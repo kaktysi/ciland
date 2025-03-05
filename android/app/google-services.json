@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "611420800370",
+    "project_id": "ciland",
+    "storage_bucket": "ciland.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:611420800370:android:7cfdbc3071c3f20eb049eb",
+        "android_client_info": {
+          "package_name": "com.example.ciland"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAn4alcXQG2LkMuJWM-PytAU0CLR8tYbAc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
