@@ -1,4 +1,3 @@
-import 'package:ciland/features/films/entity/genre.dart';
 import 'package:ciland/features/films/models/film_card.dart';
 
 class Film {
@@ -9,7 +8,7 @@ class Film {
   final bool isAdult;
   final double averageRating;
   final int startYear;
-  final List<Genre> genre;
+  final List<String> genres;
 
   Film({
     required this.id,
@@ -19,7 +18,7 @@ class Film {
     required this.isAdult,
     required this.averageRating,
     required this.startYear,
-    required this.genre,
+    required this.genres,
   });
 
   factory Film.fromModel(FilmCard model) {
@@ -31,7 +30,7 @@ class Film {
       isAdult: model.isAdult,
       averageRating: model.averageRating,
       startYear: model.startYear,
-      genre: model.genre.map((e) => Genre.fromModel(e)).toList(),
+      genres: model.genres,
     );
   }
 }

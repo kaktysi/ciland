@@ -14,10 +14,8 @@ FilmCard _$FilmCardFromJson(Map<String, dynamic> json) => FilmCard(
   isAdult: json['isAdult'] as bool? ?? false,
   averageRating: (json['averageRating'] as num?)?.toDouble() ?? 0.0,
   startYear: (json['startYear'] as num?)?.toInt() ?? 0,
-  genre:
-      (json['genre'] as List<dynamic>?)
-          ?.map((e) => GenreModel.fromJson(e as Map<String, dynamic>))
-          .toList() ??
+  genres:
+      (json['genres'] as List<dynamic>?)?.map((e) => e as String).toList() ??
       [],
 );
 
@@ -29,5 +27,5 @@ Map<String, dynamic> _$FilmCardToJson(FilmCard instance) => <String, dynamic>{
   'isAdult': instance.isAdult,
   'averageRating': instance.averageRating,
   'startYear': instance.startYear,
-  'genre': instance.genre,
+  'genres': instance.genres,
 };

@@ -16,21 +16,15 @@ class FilmsScreen extends StatefulWidget {
 }
 
 class _FilmsScreenState extends State<FilmsScreen> {
-  late final FilmsBloc _filmsBloc;
-
   List<Film> filmList = [];
-
-  @override
-  void initState() {
-    _filmsBloc = FilmsBloc(filmsUseCase: GetIt.I<FilmsUseCase>());
-    _filmsBloc.add(LoadTopFilms());
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => _filmsBloc..add(LoadTopFilms()),
+      create:
+          (context) =>
+              FilmsBloc(filmsUseCase: GetIt.I<FilmsUseCase>())
+                ..add(LoadTopFilms()),
       child: Scaffold(
         body: SingleChildScrollView(
           child: Padding(
@@ -64,7 +58,6 @@ class _FilmsScreenState extends State<FilmsScreen> {
                 ),
                 const SizedBox(height: 38),
                 BlocBuilder<FilmsBloc, FilmsState>(
-                  bloc: _filmsBloc,
                   builder: (context, state) {
                     if (state is FilmsIsLoadedState) {
                       filmList = state.films;

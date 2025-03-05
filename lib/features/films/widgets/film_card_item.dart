@@ -102,7 +102,7 @@ class _FilmCardItemState extends State<FilmCardItem> {
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: Text(
-                        widget.film.genre[0].name,
+                        widget.film.genres[0],
                         style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
                       ),
                     ),
