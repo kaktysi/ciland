@@ -1,6 +1,7 @@
 import 'package:ciland/features/films/entity/film.dart';
 import 'package:ciland/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class FilmCardItem extends StatefulWidget {
   final Film film;
@@ -17,14 +18,16 @@ class _FilmCardItemState extends State<FilmCardItem> {
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
-      onEnter: (_) => setState(() {
-        scale = 1.05;
-        visibility = true;
-      }),
-      onExit: (_) => setState(() {
-        scale = 1.00;
-        visibility = false;
-      }),
+      onEnter:
+          (_) => setState(() {
+            scale = 1.05;
+            visibility = true;
+          }),
+      onExit:
+          (_) => setState(() {
+            scale = 1.00;
+            visibility = false;
+          }),
       child: Transform.scale(
         scale: scale,
         child: Container(
@@ -42,12 +45,14 @@ class _FilmCardItemState extends State<FilmCardItem> {
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  widget.film.title,
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: 2,
+                Flexible(
+                  child: Text(
+                    widget.film.title,
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 2,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 14),
@@ -55,9 +60,15 @@ class _FilmCardItemState extends State<FilmCardItem> {
                   children: [
                     Container(
                       margin: const EdgeInsets.only(right: 5),
-                      padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 5),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 3,
+                        horizontal: 5,
+                      ),
                       decoration: BoxDecoration(
-                        border: Border.all(width: 2, color: ThemeApp.borderColor2),
+                        border: Border.all(
+                          width: 2,
+                          color: ThemeApp.borderColor2,
+                        ),
                         borderRadius: BorderRadius.circular(2),
                       ),
                       child: Text(
@@ -71,19 +82,28 @@ class _FilmCardItemState extends State<FilmCardItem> {
                       maintainSize: widget.film.isAdult,
                       child: Container(
                         margin: const EdgeInsets.only(right: 5),
-                        padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 3,
+                          horizontal: 10,
+                        ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           color: ThemeApp.infoCardBoxColor,
                         ),
                         child: Text(
                           '18+',
-                          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
                     ),
                     Container(
-                      padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 3,
+                        horizontal: 10,
+                      ),
                       margin: const EdgeInsets.only(right: 5),
                       decoration: BoxDecoration(
                         color: ThemeApp.infoCardBoxColor,
@@ -91,11 +111,17 @@ class _FilmCardItemState extends State<FilmCardItem> {
                       ),
                       child: Text(
                         widget.film.startYear.toString(),
-                        style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+                        style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                     Container(
-                      padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 3,
+                        horizontal: 10,
+                      ),
                       margin: const EdgeInsets.only(right: 5),
                       decoration: BoxDecoration(
                         color: ThemeApp.infoCardBoxColor,
@@ -103,7 +129,10 @@ class _FilmCardItemState extends State<FilmCardItem> {
                       ),
                       child: Text(
                         widget.film.genres[0],
-                        style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+                        style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                   ],
@@ -125,7 +154,9 @@ class _FilmCardItemState extends State<FilmCardItem> {
                       maintainSize: visibility,
                       visible: visibility,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          context.go('/home/films/details/${widget.film.id}');
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: ThemeApp.buttonColor,
                         ),

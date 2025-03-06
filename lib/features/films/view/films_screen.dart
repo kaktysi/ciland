@@ -89,6 +89,41 @@ class _FilmsScreenState extends State<FilmsScreen> {
                     return Center(child: CircularProgressIndicator());
                   },
                 ),
+                // GridView.builder(
+                //   shrinkWrap: true,
+                //   physics: const NeverScrollableScrollPhysics(),
+                //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                //     crossAxisCount:
+                //         context.isWideWebView
+                //             ? 4
+                //             : context.isMediumWebView
+                //             ? 3
+                //             : context.isNarrowWebView
+                //             ? 2
+                //             : 1,
+                //     crossAxisSpacing: 25,
+                //     mainAxisSpacing: 25,
+                //     childAspectRatio: 406 / 325,
+                //   ),
+                //   itemCount: 20,
+                //   itemBuilder: (context, index) {
+                //     return FilmCardItem(
+                //       film: Film(
+                //         id: 'tt0111161',
+                //         title:
+                //             'The Lord of the Rings: The Fellowship of the Ring',
+                //         description:
+                //             'Gandalf and Aragorn lead the World of Men against Saurons army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.',
+                //         primaryImage:
+                //             'https://m.media-amazon.com/images/M/MV5BMDAyY2FhYjctNDc5OS00MDNlLThiMGUtY2UxYWVkNGY2ZjljXkEyXkFqcGc@._V1_.jpg',
+                //         isAdult: false,
+                //         averageRating: 2.3,
+                //         startYear: 2004,
+                //         genres: ['Drama', 'Drama', 'Drama', 'Drama'],
+                //       ),
+                //     );
+                //   },
+                // ),
               ],
             ),
           ),
