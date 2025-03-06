@@ -32,23 +32,28 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                 details = state.movieDetails;
                 return Column(
                   children: [
-                    DecoratedBox(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage(details.primaryImage),
+                    SizedBox(
+                      height: 800,
+                      width: double.infinity,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: NetworkImage(details.primaryImage),
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal:
-                              context.isMobileView || context.isNarrowWebView
-                                  ? 20
-                                  : 80,
-                          vertical: 70,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [],
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal:
+                                context.isMobileView || context.isNarrowWebView
+                                    ? 20
+                                    : 80,
+                            vertical: 70,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [],
+                          ),
                         ),
                       ),
                     ),
