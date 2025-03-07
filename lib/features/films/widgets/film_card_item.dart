@@ -1,5 +1,13 @@
 import 'package:ciland/features/films/entity/film.dart';
+import 'package:ciland/features/films/widgets/animated_action_button.dart';
+import 'package:ciland/features/films/widgets/custom_action_button.dart';
+import 'package:ciland/features/films/widgets/dark_gradient_background.dart';
+import 'package:ciland/features/films/widgets/info_widget.dart';
+import 'package:ciland/features/films/widgets/movie_description.dart';
+import 'package:ciland/features/films/widgets/movie_image.dart';
+import 'package:ciland/features/films/widgets/movie_title.dart';
 import 'package:ciland/theme/theme.dart';
+import 'package:ciland/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -37,28 +45,12 @@ class _FilmCardItemState extends State<FilmCardItem> {
           ),
           child: Stack(
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(21),
-                child: Image.network(
-                  widget.film.primaryImage,
-                  fit: BoxFit.cover,
-                  width: double.infinity,
-                  height: double.infinity,
-                ),
-              ),
+              MovieImage(imageUrl: widget.film.primaryImage),
               Positioned.fill(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(21),
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Colors.transparent,
-                        Colors.black.withValues(alpha: 0.6),
-                      ],
-                    ),
-                  ),
+                child: DarkGradientBackground(
+                  borderRadius: 21,
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
                 ),
               ),
               Padding(
@@ -67,128 +59,66 @@ class _FilmCardItemState extends State<FilmCardItem> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Flexible(
-                      child: Text(
-                        widget.film.title,
-                        style: const TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: 2,
-                        ),
-                      ),
-                    ),
+                    MovieTitle(widget: widget),
                     const SizedBox(height: 14),
                     Row(
                       children: [
-                        Container(
-                          margin: const EdgeInsets.only(right: 5),
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 3,
-                            horizontal: 5,
-                          ),
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              width: 2,
-                              color: ThemeApp.borderColor2,
-                            ),
-                            borderRadius: BorderRadius.circular(2),
-                          ),
-                          child: Text(
-                            widget.film.averageRating.toString(),
-                            style: const TextStyle(fontSize: 8),
-                          ),
+                        InfoWidget(
+                          text: widget.film.averageRating.toString(),
+                          horizontalPadding: 5,
+                          borderWidth: 2,
+                          borderColor: ThemeApp.borderColor2,
+                          borderRadius: 2,
+                          fontSize: 8,
+                          fontWeight: FontWeight.w400,
                         ),
                         Visibility(
-                          maintainAnimation: widget.film.isAdult,
-                          maintainState: widget.film.isAdult,
-                          maintainSize: widget.film.isAdult,
-                          child: Container(
-                            margin: const EdgeInsets.only(right: 5),
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 3,
-                              horizontal: 10,
-                            ),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: ThemeApp.infoCardBoxColor,
-                            ),
-                            child: const Text(
-                              '18+',
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
+                          visible: widget.film.isAdult,
+                          child: InfoWidget(
+                            text: '18+',
+                            backgroundColor: ThemeApp.infoCardBoxColor,
                           ),
                         ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 3,
-                            horizontal: 10,
-                          ),
-                          margin: const EdgeInsets.only(right: 5),
-                          decoration: BoxDecoration(
-                            color: ThemeApp.infoCardBoxColor,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Text(
-                            widget.film.startYear.toString(),
-                            style: const TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
+                        InfoWidget(
+                          text: widget.film.startYear.toString(),
+                          backgroundColor: ThemeApp.infoCardBoxColor,
                         ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 3,
-                            horizontal: 10,
-                          ),
-                          margin: const EdgeInsets.only(right: 5),
-                          decoration: BoxDecoration(
-                            color: ThemeApp.infoCardBoxColor,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Text(
-                            widget.film.genres[0],
-                            style: const TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
+                        InfoWidget(
+                          text: widget.film.genres[0],
+                          backgroundColor: ThemeApp.infoCardBoxColor,
                         ),
                       ],
                     ),
-                    Text(
-                      widget.film.description,
-                      style: const TextStyle(fontSize: 11, height: 2),
+                    MovieDescription(
+                      text: widget.film.description,
+                      height: 2,
                       maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
                     ),
-                    SizedBox(
-                      width: double.infinity,
-                      child: AnimatedOpacity(
-                        opacity: visibility ? 1.0 : 0.0,
-                        duration: const Duration(milliseconds: 200),
-                        child: Visibility(
-                          maintainState: visibility,
-                          maintainAnimation: visibility,
-                          maintainSize: visibility,
-                          visible: visibility,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              context.go(
-                                '/home/films/details/${widget.film.id}',
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: ThemeApp.buttonColor,
-                            ),
-                            child: const Text('Watch'),
-                          ),
+                    if (!context.isMobileView) ...[
+                      SizedBox(
+                        width: double.infinity,
+                        child: AnimatedActionButton(
+                          visibility: visibility,
+                          text: 'Watch',
+                          onPressed: () {
+                            context.go('/home/films/details/${widget.film.id}');
+                          },
+                          backgroundColor: ThemeApp.buttonColor,
                         ),
                       ),
-                    ),
+                    ],
+                    if (context.isMobileView) ...[
+                      SizedBox(
+                        width: double.infinity,
+                        child: CustomActionButton(
+                          text: 'Watch',
+                          onPressed: () {
+                            context.go('/home/films/details/${widget.film.id}');
+                          },
+                          backgroundColor: ThemeApp.buttonColor,
+                        ),
+                      ),
+                    ],
                   ],
                 ),
               ),
