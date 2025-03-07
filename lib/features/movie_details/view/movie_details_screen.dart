@@ -1,7 +1,6 @@
 import 'package:ciland/features/movie_details/bloc/movie_details_bloc.dart';
 import 'package:ciland/features/movie_details/entity/movie_details.dart';
 import 'package:ciland/features/movie_details/usecase/movie_details_usecase.dart';
-import 'package:ciland/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -35,26 +34,38 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                     SizedBox(
                       height: 800,
                       width: double.infinity,
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage(details.primaryImage),
-                            fit: BoxFit.cover,
+                      child: Stack(
+                        children: [
+                          Positioned.fill(
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: NetworkImage(details.primaryImage),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal:
-                                context.isMobileView || context.isNarrowWebView
-                                    ? 20
-                                    : 80,
-                            vertical: 70,
+                          Positioned.fill(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
+                                  colors: [
+                                    Colors.black.withValues(alpha: 0.9),
+                                    Colors.transparent,
+                                  ],
+                                ),
+                              ),
+                            ),
                           ),
-                          child: Column(
+                          Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.end,
                             children: [],
                           ),
-                        ),
+                        ],
                       ),
                     ),
                   ],
