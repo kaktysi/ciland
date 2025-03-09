@@ -1,20 +1,28 @@
-import 'package:ciland/features/films/widgets/film_card_item.dart';
 import 'package:flutter/material.dart';
 
 class MovieTitle extends StatelessWidget {
-  const MovieTitle({super.key, required this.widget});
+  const MovieTitle({
+    super.key,
+    required this.text,
+    this.letterSpacing,
+    this.fontSize = 28,
+    this.fontWeight = FontWeight.w500,
+  });
 
-  final FilmCardItem widget;
+  final String text;
+  final double fontSize;
+  final double? letterSpacing;
+  final FontWeight fontWeight;
 
   @override
   Widget build(BuildContext context) {
     return Flexible(
       child: Text(
-        widget.film.title,
-        style: const TextStyle(
-          fontSize: 28,
-          fontWeight: FontWeight.w500,
-          letterSpacing: 2,
+        text,
+        style: TextStyle(
+          fontSize: fontSize,
+          fontWeight: fontWeight,
+          letterSpacing: letterSpacing,
         ),
       ),
     );
