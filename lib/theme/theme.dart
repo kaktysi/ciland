@@ -12,6 +12,7 @@ class ThemeApp {
   static const whiteColor = Colors.white;
   static const subTitleColor = Color.fromRGBO(86, 92, 103, 1.0);
   static const subTitleColor2 = Color.fromRGBO(134, 143, 160, 1.0);
+  static const subTitleColor3 = Color.fromRGBO(206, 206, 207, 1);
   static const borderColor = Color.fromRGBO(49, 50, 54, 1.0);
   static const borderColor2 = Color.fromRGBO(72, 82, 94, 1.0);
   static const infoCardBoxColor = Color.fromRGBO(28, 35, 43, 1.0);

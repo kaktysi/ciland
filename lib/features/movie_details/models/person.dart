@@ -11,6 +11,14 @@ class Person {
   final String fullName;
   final String? job;
 
+
+  @override
+  String toString() {
+    return fullName.toString();
+  }
+
+  bool get isActor => job == 'actor' || job == 'actress';
+
   factory Person.fromJson(Map<String, dynamic> json) => _$PersonFromJson(json);
 
   Map<String, dynamic> toJson() => _$PersonToJson(this);

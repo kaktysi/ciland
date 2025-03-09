@@ -1,3 +1,4 @@
+import 'package:ciland/features/films/models/movie_type.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'film_card.g.dart';
 
@@ -6,7 +7,7 @@ class FilmCard {
   @JsonKey(defaultValue: '')
   final String id;
   @JsonKey(defaultValue: '')
-  final String originalTitle;
+  final String primaryTitle;
   @JsonKey(defaultValue: '')
   final String description;
   @JsonKey(defaultValue: '')
@@ -19,16 +20,19 @@ class FilmCard {
   final int startYear;
   @JsonKey(defaultValue: <String>[])
   final List<String> genres;
+  @JsonKey(unknownEnumValue: MovieType.movie, defaultValue: MovieType.movie)
+  final MovieType type;
 
   FilmCard({
     required this.id,
-    required this.originalTitle,
+    required this.primaryTitle,
     required this.description,
     required this.primaryImage,
     required this.isAdult,
     required this.averageRating,
     required this.startYear,
     required this.genres,
+    required this.type,
   });
 
   factory FilmCard.fromJson(Map<String, dynamic> json) =>

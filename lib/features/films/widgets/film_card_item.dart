@@ -59,7 +59,7 @@ class _FilmCardItemState extends State<FilmCardItem> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    MovieTitle(text: widget.film.title, letterSpacing: 2),
+                    MovieTitle(text: widget.film.primarytitle, letterSpacing: 2),
                     const SizedBox(height: 14),
                     Row(
                       children: [

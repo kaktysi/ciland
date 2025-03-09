@@ -20,7 +20,7 @@ class DarkGradientBackground extends StatelessWidget {
         gradient: LinearGradient(
           begin: begin,
           end: end,
-          colors: [Colors.transparent, Colors.black.withValues(alpha: 0.8)],
+          colors: [Colors.transparent, Colors.black.withValues(alpha: 1)],
         ),
       ),
     );
