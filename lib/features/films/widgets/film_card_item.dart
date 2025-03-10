@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class FilmCardItem extends StatefulWidget {
-  final Film film;
+  final Movie film;
   const FilmCardItem({super.key, required this.film});
 
   @override

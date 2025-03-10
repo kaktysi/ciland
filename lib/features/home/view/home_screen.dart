@@ -1,4 +1,4 @@
-import 'package:ciland/features/films/view/films_screen.dart';
+import 'package:ciland/features/films/view/movie_screen.dart';
 import 'package:ciland/features/home/models/home_navigation_item.dart';
 import 'package:ciland/features/home/widgets/navigation_drawer_left.dart';
 import 'package:flutter/material.dart';
@@ -20,13 +20,13 @@ class _HomeScreenState extends State<HomeScreen> {
       icon: const Icon(Icons.apps_outlined),
       title: 'CILAND',
       tabName: 'ciland',
-      screen: const FilmsScreen(),
+      screen: const MovieScreen(),
     ),
     HomeNavigationItem(
       icon: const Icon(Icons.tv),
       title: 'Films',
       tabName: 'films',
-      screen: const FilmsScreen(),
+      screen: const MovieScreen(),
     ),
     HomeNavigationItem(
       icon: const Icon(Icons.tv_off_rounded),
@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
       icon: const Icon(Icons.help_center_rounded),
       title: 'Help',
       tabName: 'help',
-      screen: const FilmsScreen(),
+      screen: const MovieScreen(),
     ),
   ];
   late final List<String> _navTabs;

@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'film_card.dart';
+part of 'movie_card.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-FilmCard _$FilmCardFromJson(Map<String, dynamic> json) => FilmCard(
+MovieCard _$MovieCardFromJson(Map<String, dynamic> json) => MovieCard(
   id: json['id'] as String? ?? '',
   primaryTitle: json['primaryTitle'] as String? ?? '',
   description: json['description'] as String? ?? '',
@@ -26,7 +26,7 @@ FilmCard _$FilmCardFromJson(Map<String, dynamic> json) => FilmCard(
       MovieType.movie,
 );
 
-Map<String, dynamic> _$FilmCardToJson(FilmCard instance) => <String, dynamic>{
+Map<String, dynamic> _$MovieCardToJson(MovieCard instance) => <String, dynamic>{
   'id': instance.id,
   'primaryTitle': instance.primaryTitle,
   'description': instance.description,

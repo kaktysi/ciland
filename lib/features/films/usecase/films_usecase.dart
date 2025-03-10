@@ -6,9 +6,9 @@ class FilmsUseCase {
 
   FilmsUseCase(this._filmsRepository);
 
-    Future<List<Film>> getTopFilms() async {
+    Future<List<Movie>> getTopFilms() async {
     var filmsListDto = await _filmsRepository.getTopFilms();
-    List<Film> filmsList = filmsListDto.map((e) => Film.fromModel(e)).toList();
+    List<Movie> filmsList = filmsListDto.map((e) => Movie.fromModel(e)).toList();
     return filmsList;
   }
 }

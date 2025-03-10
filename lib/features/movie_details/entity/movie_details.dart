@@ -2,7 +2,7 @@ import 'package:ciland/features/films/entity/film.dart';
 import 'package:ciland/features/movie_details/models/movie_details.dart';
 import 'package:ciland/features/movie_details/models/person.dart';
 
-class MovieDetails extends Film {
+class MovieDetails extends Movie {
   final String originalTitle;
   final int? runtimeMinutes;
   final int? numVotes;

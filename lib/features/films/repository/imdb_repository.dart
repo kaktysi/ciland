@@ -1,5 +1,5 @@
 import 'package:ciland/app_config.dart';
-import 'package:ciland/features/films/models/film_card.dart';
+import 'package:ciland/features/films/models/movie_card.dart';
 import 'package:ciland/features/films/repository/abstract_films_repository.dart';
 import 'package:dio/dio.dart';
 
@@ -9,7 +9,7 @@ class IMDBRepository implements AbstractFilmsRepository {
   IMDBRepository(this._dio);
 
   @override
-  Future<List<FilmCard>> getTopFilms() async {
+  Future<List<MovieCard>> getTopFilms() async {
     final response = await _dio.get<List<dynamic>>(
       'https://imdb236.p.rapidapi.com/imdb/top250-movies',
       options: Options(
@@ -19,6 +19,6 @@ class IMDBRepository implements AbstractFilmsRepository {
         },
       ),
     );
-    return response.data?.map((e) => FilmCard.fromJson(e)).toList() ?? [];
+    return response.data?.map((e) => MovieCard.fromJson(e)).toList() ?? [];
   }
 }

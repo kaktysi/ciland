@@ -1,7 +1,7 @@
-import 'package:ciland/features/films/models/film_card.dart';
+import 'package:ciland/features/films/models/movie_card.dart';
 import 'package:ciland/features/films/models/movie_type.dart';
 
-class Film {
+class Movie {
   final String id;
   final String primarytitle;
   final String description;
@@ -12,7 +12,7 @@ class Film {
   final List<String> genres;
   final MovieType movieType;
 
-  Film({
+  Movie({
     required this.id,
     required this.primarytitle,
     required this.description,
@@ -24,8 +24,8 @@ class Film {
     required this.movieType,
   });
 
-  factory Film.fromModel(FilmCard model) {
-    return Film(
+  factory Movie.fromModel(MovieCard model) {
+    return Movie(
       id: model.id,
       primarytitle: model.primaryTitle,
       description: model.description,

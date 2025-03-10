@@ -1,9 +1,9 @@
 import 'package:ciland/features/films/models/movie_type.dart';
 import 'package:json_annotation/json_annotation.dart';
-part 'film_card.g.dart';
+part 'movie_card.g.dart';
 
 @JsonSerializable()
-class FilmCard {
+class MovieCard {
   @JsonKey(defaultValue: '')
   final String id;
   @JsonKey(defaultValue: '')
@@ -23,7 +23,7 @@ class FilmCard {
   @JsonKey(unknownEnumValue: MovieType.movie, defaultValue: MovieType.movie)
   final MovieType type;
 
-  FilmCard({
+  MovieCard({
     required this.id,
     required this.primaryTitle,
     required this.description,
@@ -35,8 +35,8 @@ class FilmCard {
     required this.type,
   });
 
-  factory FilmCard.fromJson(Map<String, dynamic> json) =>
-      _$FilmCardFromJson(json);
+  factory MovieCard.fromJson(Map<String, dynamic> json) =>
+      _$MovieCardFromJson(json);
 
-  Map<String, dynamic> toJson() => _$FilmCardToJson(this);
+  Map<String, dynamic> toJson() => _$MovieCardToJson(this);
 }

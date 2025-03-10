@@ -8,15 +8,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
-class FilmsScreen extends StatefulWidget {
-  const FilmsScreen({super.key});
+class MovieScreen extends StatefulWidget {
+  const MovieScreen({super.key});
 
   @override
-  State<FilmsScreen> createState() => _FilmsScreenState();
+  State<MovieScreen> createState() => _MovieScreenState();
 }
 
-class _FilmsScreenState extends State<FilmsScreen> {
-  List<Film> filmList = [];
+class _MovieScreenState extends State<MovieScreen> {
+  List<Movie> filmList = [];
 
   @override
   Widget build(BuildContext context) {

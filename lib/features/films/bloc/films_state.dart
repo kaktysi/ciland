@@ -9,7 +9,7 @@ class FilmsIsLoadingState extends FilmsState {}
 class FilmsIsLoadedState extends FilmsState {
   FilmsIsLoadedState({required this.films});
 
-  final List<Film> films;
+  final List<Movie> films;
 }
 
 class FilmsIsErrorLoadState extends FilmsState {
