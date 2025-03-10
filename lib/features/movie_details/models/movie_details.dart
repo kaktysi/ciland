@@ -1,5 +1,5 @@
-import 'package:ciland/features/films/models/movie_card.dart';
-import 'package:ciland/features/films/models/movie_type.dart';
+import 'package:ciland/features/movies/models/movie_card.dart';
+import 'package:ciland/features/movies/models/movie_type.dart';
 import 'package:ciland/features/movie_details/models/person.dart';
 import 'package:json_annotation/json_annotation.dart';
 

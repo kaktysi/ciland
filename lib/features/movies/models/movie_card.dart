@@ -1,4 +1,4 @@
-import 'package:ciland/features/films/models/movie_type.dart';
+import 'package:ciland/features/movies/models/movie_type.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'movie_card.g.dart';
 

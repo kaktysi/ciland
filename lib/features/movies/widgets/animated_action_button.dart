@@ -1,4 +1,4 @@
-import 'package:ciland/features/films/widgets/custom_action_button.dart';
+import 'package:ciland/features/movies/widgets/custom_action_button.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedActionButton extends StatelessWidget {

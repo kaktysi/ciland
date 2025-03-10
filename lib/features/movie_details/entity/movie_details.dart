@@ -1,4 +1,4 @@
-import 'package:ciland/features/films/entity/film.dart';
+import 'package:ciland/features/movies/entity/film.dart';
 import 'package:ciland/features/movie_details/models/movie_details.dart';
 import 'package:ciland/features/movie_details/models/person.dart';
 
@@ -17,11 +17,11 @@ class MovieDetails extends Movie {
 
   MovieDetails({
     required this.originalTitle,
-    required this.runtimeMinutes,
-    required this.numVotes,
-    required this.budget,
+    this.runtimeMinutes,
+    this.numVotes,
+    this.budget,
     this.endYear,
-    required this.language,
+    this.language,
     required this.countriesOfOrigin,
     required this.spokenLanguages,
     required this.directors,

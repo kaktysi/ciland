@@ -1,4 +1,4 @@
-import 'package:ciland/features/films/widgets/movie_description.dart';
+import 'package:ciland/features/movies/widgets/movie_description.dart';
 import 'package:ciland/features/movie_details/entity/movie_details.dart';
 import 'package:ciland/features/movie_details/widgets/info_column.dart';
 import 'package:flutter/material.dart';

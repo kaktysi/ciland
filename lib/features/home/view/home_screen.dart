@@ -1,4 +1,4 @@
-import 'package:ciland/features/films/view/movie_screen.dart';
+import 'package:ciland/features/movies/view/movie_screen.dart';
 import 'package:ciland/features/home/models/home_navigation_item.dart';
 import 'package:ciland/features/home/widgets/navigation_drawer_left.dart';
 import 'package:flutter/material.dart';

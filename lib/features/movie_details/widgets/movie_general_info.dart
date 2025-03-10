@@ -1,6 +1,6 @@
-import 'package:ciland/features/films/widgets/custom_action_button.dart';
-import 'package:ciland/features/films/widgets/movie_description.dart';
-import 'package:ciland/features/films/widgets/movie_title.dart';
+import 'package:ciland/features/movies/widgets/custom_action_button.dart';
+import 'package:ciland/features/movies/widgets/movie_description.dart';
+import 'package:ciland/features/movies/widgets/movie_title.dart';
 import 'package:ciland/features/movie_details/entity/movie_details.dart';
 import 'package:ciland/theme/theme.dart';
 import 'package:flutter/material.dart';

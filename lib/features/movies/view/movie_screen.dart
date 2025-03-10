@@ -1,7 +1,8 @@
-import 'package:ciland/features/films/bloc/films_bloc.dart';
-import 'package:ciland/features/films/entity/film.dart';
-import 'package:ciland/features/films/usecase/films_usecase.dart';
-import 'package:ciland/features/films/widgets/film_card_item.dart';
+import 'package:ciland/features/movies/bloc/movies_bloc.dart';
+import 'package:ciland/features/movies/entity/film.dart';
+import 'package:ciland/features/movies/usecase/movies_usecase.dart';
+import 'package:ciland/features/movies/widgets/film_card_item.dart';
+import 'package:ciland/features/movies/widgets/search_field.dart';
 import 'package:ciland/theme/theme.dart';
 import 'package:ciland/utils.dart';
 import 'package:flutter/material.dart';
@@ -23,8 +24,7 @@ class _MovieScreenState extends State<MovieScreen> {
     return BlocProvider(
       create:
           (context) =>
-              FilmsBloc(filmsUseCase: GetIt.I<FilmsUseCase>())
-                ..add(LoadTopFilms()),
+              MoviesBloc(moviesUseCase: GetIt.I<MoviesUseCase>()),
       child: Scaffold(
         body: SingleChildScrollView(
           child: Padding(
@@ -36,11 +36,26 @@ class _MovieScreenState extends State<MovieScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Home / Films',
-                  style: TextStyle(
-                    color: ThemeApp.subTitleColor2,
-                    letterSpacing: 2,
+                SizedBox(
+                  width: double.infinity,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Home / Films',
+                        style: TextStyle(
+                          color: ThemeApp.subTitleColor2,
+                          letterSpacing: 2,
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: SearchField(
+                          onPressed: (value) {
+                            
+                          }
+                        ))
+                    ],
                   ),
                 ),
                 const SizedBox(height: 38),
@@ -57,10 +72,10 @@ class _MovieScreenState extends State<MovieScreen> {
                   ),
                 ),
                 const SizedBox(height: 38),
-                BlocBuilder<FilmsBloc, FilmsState>(
+                BlocBuilder<MoviesBloc, MoviesState>(
                   builder: (context, state) {
-                    if (state is FilmsIsLoadedState) {
-                      filmList = state.films;
+                    if (state is MoviesIsLoadedState) {
+                      filmList = state.movies;
                       return GridView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
@@ -83,7 +98,7 @@ class _MovieScreenState extends State<MovieScreen> {
                         },
                       );
                     }
-                    if (state is FilmsIsErrorLoadState) {
+                    if (state is MoviesIsErrorLoadState) {
                       return Center(child: Text("ERROR"));
                     }
                     return Center(child: CircularProgressIndicator());

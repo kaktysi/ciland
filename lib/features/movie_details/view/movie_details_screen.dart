@@ -1,4 +1,4 @@
-import 'package:ciland/features/films/widgets/dark_gradient_background.dart';
+import 'package:ciland/features/movies/widgets/dark_gradient_background.dart';
 import 'package:ciland/features/movie_details/bloc/movie_details_bloc.dart';
 import 'package:ciland/features/movie_details/usecase/movie_details_usecase.dart';
 import 'package:ciland/features/movie_details/widgets/movie_details_additional_info.dart';
