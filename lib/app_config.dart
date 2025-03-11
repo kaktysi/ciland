@@ -14,4 +14,6 @@ abstract class AppConfig {
   static const seriesRouteName = 'series';
 
   static const helpRouteName = 'help';
+
+  static const maxElementsOnPage = 32;
 }

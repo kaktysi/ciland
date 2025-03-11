@@ -1,9 +1,7 @@
 import 'package:ciland/ci_land_app.dart';
 import 'package:ciland/features/movies/repository/abstract_films_repository.dart';
 import 'package:ciland/features/movies/usecase/movies_usecase.dart';
-import 'package:ciland/features/movies/repository/abstract_films_repository.dart';
 import 'package:ciland/features/movies/repository/imdb_repository.dart';
-import 'package:ciland/features/movies/usecase/movies_usecase.dart';
 import 'package:ciland/features/movie_details/repository/imdb_movie_details_repository.dart';
 import 'package:ciland/features/movie_details/repository/movie_details_repository.dart';
 import 'package:ciland/features/movie_details/usecase/movie_details_usecase.dart';

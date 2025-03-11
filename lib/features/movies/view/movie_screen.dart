@@ -1,3 +1,4 @@
+import 'package:ciland/app_config.dart';
 import 'package:ciland/features/movies/bloc/movies_bloc.dart';
 import 'package:ciland/features/movies/entity/film.dart';
 import 'package:ciland/features/movies/usecase/movies_usecase.dart';
@@ -18,6 +19,7 @@ class MovieScreen extends StatefulWidget {
 
 class _MovieScreenState extends State<MovieScreen> {
   List<Movie> filmList = [];
+  int _pageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -89,30 +91,68 @@ class _MovieScreenState extends State<MovieScreen> {
                         builder: (context, state) {
                           if (state is MoviesIsLoadedState) {
                             filmList = state.movies;
+                            final pages =
+                                filmList.length ~/ AppConfig.maxElementsOnPage +
+                                1;
+                            final lastPageElements =
+                                filmList.length % AppConfig.maxElementsOnPage;
                             return filmList.isNotEmpty
-                                ? GridView.builder(
-                                  shrinkWrap: true,
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount:
-                                            context.isWideWebView
-                                                ? 4
-                                                : context.isMediumWebView
-                                                ? 3
-                                                : context.isNarrowWebView
-                                                ? 2
-                                                : 1,
-                                        crossAxisSpacing: 25,
-                                        mainAxisSpacing: 25,
-                                        childAspectRatio: 406 / 325,
-                                      ),
-                                  itemCount: filmList.length,
-                                  itemBuilder: (context, index) {
-                                    return MovieCardItem(film: filmList[index]);
-                                  },
+                                ? Column(
+                                  children: [
+                                    GridView.builder(
+                                      shrinkWrap: true,
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      gridDelegate:
+                                          SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount:
+                                                context.isWideWebView
+                                                    ? 4
+                                                    : context.isMediumWebView
+                                                    ? 3
+                                                    : context.isNarrowWebView
+                                                    ? 2
+                                                    : 1,
+                                            crossAxisSpacing: 25,
+                                            mainAxisSpacing: 25,
+                                            childAspectRatio: 406 / 325,
+                                          ),
+                                      itemCount:
+                                          _pageIndex + 1 == pages
+                                              ? lastPageElements
+                                              : AppConfig.maxElementsOnPage,
+                                      itemBuilder: (context, index) {
+                                        return MovieCardItem(
+                                          film:
+                                              filmList[_pageIndex *
+                                                      AppConfig
+                                                          .maxElementsOnPage +
+                                                  index],
+                                        );
+                                      },
+                                    ),
+                                    const SizedBox(height: 20),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      spacing: 20,
+                                      children: [
+                                        for (int i = 1; i <= pages; i++)
+                                          SizedBox(
+                                            child: ElevatedButton(
+                                              onPressed:
+                                                  () => setState(() {
+                                                    _pageIndex = i - 1;
+                                                  }),
+                                              child: Text('$i'),
+                                            ),
+                                          ),
+                                      ],
+                                    ),
+                                  ],
                                 )
-                                : Center(child: Text('No results :('));
+                                : Center(
+                                  child: Center(child: Text('No results :(')),
+                                );
                           }
                           if (state is MoviesIsErrorLoadState) {
                             return Center(child: Text("ERROR"));
