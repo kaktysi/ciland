@@ -14,7 +14,9 @@ class MovieFactsInfo extends StatelessWidget {
       spacing: 10,
       children: [
         InfoColumn(title: 'Original Title', info: details.originalTitle),
-        InfoColumn(title: 'Language', info: details.language ?? '-'),
+        Visibility(
+          visible: details.language != null,
+          child: InfoColumn(title: 'Language', info: details.language ?? '-')),
         InfoColumn(
           title: 'Origin Countries',
           info: details.countriesOfOrigin.map((e) => e.toString()).join(', '),

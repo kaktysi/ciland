@@ -102,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     _bottomNavigationItem(
                       name: 'Films',
-                      icon: Icons.balance_outlined,
+                      icon: Icons.tv,
                     ),
                     _bottomNavigationItem(
                       name: 'Series',

@@ -48,6 +48,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                                           : AssetImage(
                                             'assets/svg/no_picture.svg',
                                           ),
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                             ),

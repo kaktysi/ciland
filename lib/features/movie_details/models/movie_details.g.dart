@@ -9,10 +9,10 @@ part of 'movie_details.dart';
 MovieDetailsModel _$MovieDetailsModelFromJson(Map<String, dynamic> json) =>
     MovieDetailsModel(
       originalTitle: json['originalTitle'] as String? ?? '',
-      runtimeMinutes: (json['runtimeMinutes'] as num?)?.toInt() ?? 0,
-      numVotes: (json['numVotes'] as num?)?.toInt() ?? 0,
-      language: json['language'] as String? ?? '',
-      budget: (json['budget'] as num?)?.toInt() ?? 0,
+      runtimeMinutes: (json['runtimeMinutes'] as num?)?.toInt(),
+      numVotes: (json['numVotes'] as num?)?.toInt(),
+      language: json['language'] as String?,
+      budget: (json['budget'] as num?)?.toInt(),
       endYear: (json['endYear'] as num?)?.toInt(),
       countriesOfOrigin:
           (json['countriesOfOrigin'] as List<dynamic>?)

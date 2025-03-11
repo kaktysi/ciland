@@ -1,9 +1,10 @@
+import 'package:ciland/utils.dart';
 import 'package:flutter/material.dart';
 
 class SearchField extends StatefulWidget {
   const SearchField({super.key, required this.onPressed});
 
-  final void Function(String) onPressed; // Изменили сигнатуру для передачи текста
+  final void Function(String) onPressed;
 
   @override
   State<SearchField> createState() => _SearchFieldState();
@@ -29,7 +30,7 @@ class _SearchFieldState extends State<SearchField> {
     return Row(
       children: [
         SizedBox(
-          width: 200,
+          width: context.isMobileView ? 100 : 200,
           child: TextField(
             controller: _controller,
             decoration: const InputDecoration(

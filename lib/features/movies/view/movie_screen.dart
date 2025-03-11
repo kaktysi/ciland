@@ -47,6 +47,7 @@ class _MovieScreenState extends State<MovieScreen> {
                         width: double.infinity,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          spacing: 30,
                           children: [
                             Text(
                               'Home / Movies',
@@ -98,7 +99,15 @@ class _MovieScreenState extends State<MovieScreen> {
                                 filmList.length % AppConfig.maxElementsOnPage;
                             return filmList.isNotEmpty
                                 ? Column(
+                                  spacing: 20,
                                   children: [
+                                    Text(
+                                      'Page ${_pageIndex + 1} of $pages pages',
+                                      style: TextStyle(
+                                        letterSpacing: 2,
+                                        fontSize: 20,
+                                      ),
+                                    ),
                                     GridView.builder(
                                       shrinkWrap: true,
                                       physics:
@@ -131,23 +140,9 @@ class _MovieScreenState extends State<MovieScreen> {
                                         );
                                       },
                                     ),
-                                    const SizedBox(height: 20),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      spacing: 20,
-                                      children: [
-                                        for (int i = 1; i <= pages; i++)
-                                          SizedBox(
-                                            child: ElevatedButton(
-                                              onPressed:
-                                                  () => setState(() {
-                                                    _pageIndex = i - 1;
-                                                  }),
-                                              child: Text('$i'),
-                                            ),
-                                          ),
-                                      ],
-                                    ),
+                                    context.isMobileView
+                                        ? _mobilePageNumbersView(pages)
+                                        : _webPageNumbersView(pages),
                                   ],
                                 )
                                 : Center(
@@ -166,6 +161,77 @@ class _MovieScreenState extends State<MovieScreen> {
               ),
             ),
       ),
+    );
+  }
+
+  Row _webPageNumbersView(int pages) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      spacing: 20,
+      children: [
+        for (int i = 1; i <= pages; i++) ...[
+          Flexible(
+            child: SizedBox(
+              child: ElevatedButton(
+                onPressed:
+                    () => setState(() {
+                      _pageIndex = i - 1;
+                    }),
+                child: Text('$i'),
+              ),
+            ),
+          ),
+        ],
+      ],
+    );
+  }
+
+  Row _mobilePageNumbersView(int pages) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      spacing: 20,
+      children: [
+        Flexible(
+          child: SizedBox(
+            child: ElevatedButton(
+              onPressed:
+                  () => setState(() {
+                    _pageIndex = 0;
+                  }),
+              child: Text('1'),
+            ),
+          ),
+        ),
+        if (_pageIndex > 2) Text('...'),
+        for (int i = 2; i <= pages - 1; i++) ...[
+          if (i == _pageIndex + 1 ||
+              i == _pageIndex + 2 ||
+              (i == _pageIndex && _pageIndex != 0))
+            Flexible(
+              child: SizedBox(
+                child: ElevatedButton(
+                  onPressed:
+                      () => setState(() {
+                        _pageIndex = i - 1;
+                      }),
+                  child: Text('$i'),
+                ),
+              ),
+            ),
+        ],
+        if (pages - _pageIndex > 2) Text('...'),
+        Flexible(
+          child: SizedBox(
+            child: ElevatedButton(
+              onPressed:
+                  () => setState(() {
+                    _pageIndex = pages - 1;
+                  }),
+              child: Text('$pages'),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
