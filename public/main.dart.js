@@ -43281,7 +43281,7 @@ l1(a,b){return this.a_4(a,b)},
 a_4(a,b){var s=0,r=A.M(t.Yj),q,p=this,o,n
 var $async$l1=A.N(function(c,d){if(c===1)return A.J(d,r)
 while(true)switch(s){case 0:s=3
-return A.R(p.a.Ca("https://imdb236.p.rapidapi.com/imdb/search?primaryTitle="+b+"&type="+a+"&rows=10032&sortOrder=ASC&sortField=id",A.azS(A.at(["X-Rapidapi-Key",u.O,"X-Rapidapi-Host","imdb236.p.rapidapi.com"],t.N,t.z)),t.a),$async$l1)
+return A.R(p.a.Ca("https://imdb236.p.rapidapi.com/imdb/search?primaryTitle="+b+"&type="+a+"&rows=100&sortOrder=ASC&sortField=id",A.azS(A.at(["X-Rapidapi-Key",u.O,"X-Rapidapi-Host","imdb236.p.rapidapi.com"],t.N,t.z)),t.a),$async$l1)
 case 3:o=d.a
 n=o==null?null:J.pt(o,"results")
 if(n==null)n=[]
