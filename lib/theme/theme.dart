@@ -48,6 +48,8 @@ class ThemeApp {
       showUnselectedLabels: true,
       selectedLabelStyle: TextStyle(fontSize: 10),
       unselectedLabelStyle: TextStyle(fontSize: 10),
+      selectedItemColor: buttonColor,
+      unselectedItemColor: Colors.white,
     ),
   );
 

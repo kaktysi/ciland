@@ -6,10 +6,36 @@ class MoviesUseCase {
 
   MoviesUseCase(this._moviesRepository);
 
-    Future<List<Movie>> getTopMovies() async {
+  Future<List<Movie>> getTopMovies() async {
     var moviesListDto = await _moviesRepository.getTopMovies();
-    List<Movie> moviesList = moviesListDto.map((e) => Movie.fromModel(e)).toList();
-    return moviesList;
+    List<Movie> moviesList =
+        moviesListDto.map((e) => Movie.fromModel(e)).toList();
+    return _filterMoviesList(moviesList);
+  }
+
+  Future<List<Movie>> getMoviesBySearch({
+    required String movieType,
+    required String text,
+  }) async {
+    var moviesListDto = await _moviesRepository.getMoviesBySearch(
+      movieType: movieType,
+      text: text,
+    );
+    List<Movie> moviesList =
+        moviesListDto.map((e) => Movie.fromModel(e)).toList();
+    return _filterMoviesList(moviesList);
   }
 }
 
+List<Movie> _filterMoviesList(List<Movie> list) {
+  return list
+      .where(
+        (e) =>
+            e.genres.isNotEmpty &&
+            e.startYear != 0 &&
+            e.averageRating != 0 &&
+            e.id.isNotEmpty &&
+            e.primarytitle.isNotEmpty,
+      )
+      .toList();
+}

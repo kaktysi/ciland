@@ -11,15 +11,15 @@ import 'package:ciland/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class FilmCardItem extends StatefulWidget {
+class MovieCardItem extends StatefulWidget {
   final Movie film;
-  const FilmCardItem({super.key, required this.film});
+  const MovieCardItem({super.key, required this.film});
 
   @override
-  State<FilmCardItem> createState() => _FilmCardItemState();
+  State<MovieCardItem> createState() => _FilmCardItemState();
 }
 
-class _FilmCardItemState extends State<FilmCardItem> {
+class _FilmCardItemState extends State<MovieCardItem> {
   bool visibility = false;
   double scale = 1.0;
 

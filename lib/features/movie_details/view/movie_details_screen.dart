@@ -1,7 +1,7 @@
 import 'package:ciland/features/movies/widgets/dark_gradient_background.dart';
 import 'package:ciland/features/movie_details/bloc/movie_details_bloc.dart';
 import 'package:ciland/features/movie_details/usecase/movie_details_usecase.dart';
-import 'package:ciland/features/movie_details/widgets/movie_details_additional_info.dart';
+import 'package:ciland/features/movie_details/widgets/movie_mobile_info.dart';
 import 'package:ciland/features/movie_details/widgets/movie_general_info.dart';
 import 'package:ciland/features/movie_details/widgets/movie_web_info.dart';
 import 'package:ciland/utils.dart';
@@ -42,8 +42,12 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                             child: DecoratedBox(
                               decoration: BoxDecoration(
                                 image: DecorationImage(
-                                  image: NetworkImage(details.primaryImage),
-                                  fit: BoxFit.cover,
+                                  image:
+                                      details.primaryImage.isNotEmpty
+                                          ? NetworkImage(details.primaryImage)
+                                          : AssetImage(
+                                            'assets/svg/no_picture.svg',
+                                          ),
                                 ),
                               ),
                             ),

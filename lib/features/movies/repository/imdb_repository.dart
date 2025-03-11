@@ -27,8 +27,8 @@ class IMDBRepository implements AbstractMoviesRepository {
     required String movieType,
     required String text,
   }) async {
-    final response = await _dio.get<List<dynamic>>(
-      'https://imdb236.p.rapidapi.com//imdb/search?primaryTitle=$text&type=$movieType&rows=25',
+    final response = await _dio.get<Map<String, dynamic>>(
+      'https://imdb236.p.rapidapi.com/imdb/search?primaryTitle=$text&type=$movieType&rows=25&sortOrder=ASC&sortField=id',
       options: Options(
         headers: {
           'X-Rapidapi-Key': AppConfig.apikey,
@@ -36,6 +36,7 @@ class IMDBRepository implements AbstractMoviesRepository {
         },
       ),
     );
-    return response.data?.map((e) => MovieCard.fromJson(e)).toList() ?? [];
+    final List<dynamic> results = response.data?['results'] ?? [];
+    return results.map((e) => MovieCard.fromJson(e)).toList();
   }
 }

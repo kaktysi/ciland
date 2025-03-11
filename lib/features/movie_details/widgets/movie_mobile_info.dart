@@ -11,6 +11,7 @@ class MovieMobileInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      spacing: 20,
       children: [
         Text(details.primarytitle, style: TextStyle(fontSize: 28)),
         MovieDescription(

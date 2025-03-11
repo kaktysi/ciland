@@ -1,7 +1,10 @@
 import 'package:ciland/features/movies/view/movie_screen.dart';
 import 'package:ciland/features/home/models/home_navigation_item.dart';
 import 'package:ciland/features/home/widgets/navigation_drawer_left.dart';
+import 'package:ciland/theme/theme.dart';
+import 'package:ciland/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatefulWidget {
   final String tab;
@@ -85,6 +88,71 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(),
       body: Stack(children: [_fragmentPage()]),
       drawer: NavigationDrawerLeft(navItems: _navItems),
+      bottomNavigationBar:
+          context.isMobileView
+              ? SizedBox(
+                height:
+                    MediaQuery.of(context).viewInsets.bottom > 10 ? 0 : null,
+                child: BottomNavigationBar(
+                  key: const Key('bottomNavigationBar'),
+                  items: [
+                    _bottomNavigationItem(
+                      name: 'ciland',
+                      icon: Icons.apps_outlined,
+                    ),
+                    _bottomNavigationItem(
+                      name: 'Films',
+                      icon: Icons.balance_outlined,
+                    ),
+                    _bottomNavigationItem(
+                      name: 'Series',
+                      icon: Icons.tv_off_rounded,
+                    ),
+                    _bottomNavigationItem(
+                      name: 'Help',
+                      icon: Icons.help_center_rounded,
+                    ),
+                  ],
+                  currentIndex: _selectedIndex,
+                  showUnselectedLabels: true,
+                  onTap: (index) {
+                    setState(() {
+                      _changeIndex(index);
+                    });
+                  },
+                ),
+              )
+              : null,
     );
   }
+
+  void _changeIndex(int index) {
+    _selectedIndex = index;
+    switch (index) {
+      case 0:
+        context.go('/home/ciland');
+        break;
+      case 1:
+        context.go('/home/films');
+        break;
+      case 2:
+        context.go('/home/series');
+        break;
+      case 3:
+        context.go('/home/help');
+        break;
+    }
+  }
+}
+
+BottomNavigationBarItem _bottomNavigationItem({
+  required String name,
+  required IconData icon,
+}) {
+  return BottomNavigationBarItem(
+    icon: Icon(icon, color: Colors.white),
+    label: name,
+    activeIcon: Icon(icon, color: Colors.amber),
+    backgroundColor: ThemeApp.theme.bottomNavigationBarTheme.backgroundColor,
+  );
 }

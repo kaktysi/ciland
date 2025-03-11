@@ -13,6 +13,7 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
     : _moviesUseCase = moviesUseCase,
       super(MoviesInProgressInitialState()) {
     on<LoadTopMovies>(_getTopMovies);
+    on<LoadMoviesBySearch>(_getMoviesBySearch);
   }
 
   FutureOr<void> _getTopMovies(
@@ -22,6 +23,22 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
     try {
       emit(MoviesIsLoadingState());
       final result = await _moviesUseCase.getTopMovies();
+      emit(MoviesIsLoadedState(movies: result));
+    } catch (e) {
+      emit(MoviesIsErrorLoadState(exception: e));
+    }
+  }
+
+  FutureOr<void> _getMoviesBySearch(
+    LoadMoviesBySearch event,
+    Emitter<MoviesState> emit,
+  ) async {
+    try {
+      emit(MoviesIsLoadingState());
+      final result = await _moviesUseCase.getMoviesBySearch(
+        movieType: event.movieType,
+        text: event.text,
+      );
       emit(MoviesIsLoadedState(movies: result));
     } catch (e) {
       emit(MoviesIsErrorLoadState(exception: e));
