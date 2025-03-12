@@ -33,8 +33,8 @@ void main() async {
   );
   usePathUrlStrategy();
   runApp(
-    MultiProvider(
-      providers: [Provider<AppRouter>(create: (_) => AppRouter())],
+    Provider(
+      create: (context) => AppRouter(),
       child: CiLandApp(),
     ),
   );

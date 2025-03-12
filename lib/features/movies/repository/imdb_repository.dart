@@ -9,9 +9,9 @@ class IMDBRepository implements AbstractMoviesRepository {
   IMDBRepository(this._dio);
 
   @override
-  Future<List<MovieCard>> getTopMovies() async {
+  Future<List<MovieCard>> getTopMovies({required String movieType}) async {
     final response = await _dio.get<List<dynamic>>(
-      'https://imdb236.p.rapidapi.com/imdb/top250-movies',
+      'https://imdb236.p.rapidapi.com/imdb/top250-$movieType',
       options: Options(
         headers: {
           'X-Rapidapi-Key': AppConfig.apikey,

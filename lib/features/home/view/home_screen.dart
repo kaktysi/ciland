@@ -1,3 +1,4 @@
+import 'package:ciland/features/movies/models/movie_type.dart';
 import 'package:ciland/features/movies/view/movie_screen.dart';
 import 'package:ciland/features/home/models/home_navigation_item.dart';
 import 'package:ciland/features/home/widgets/navigation_drawer_left.dart';
@@ -23,25 +24,25 @@ class _HomeScreenState extends State<HomeScreen> {
       icon: const Icon(Icons.apps_outlined),
       title: 'CILAND',
       tabName: 'ciland',
-      screen: const MovieScreen(),
+      screen: const MovieScreen(movieType: MovieType.movie,),
     ),
     HomeNavigationItem(
       icon: const Icon(Icons.tv),
       title: 'Films',
       tabName: 'films',
-      screen: const MovieScreen(),
+      screen: const MovieScreen(movieType: MovieType.movie,),
     ),
     HomeNavigationItem(
       icon: const Icon(Icons.tv_off_rounded),
       title: 'Series',
       tabName: 'series',
-      screen: const Scaffold(),
+      screen: const MovieScreen(movieType: MovieType.tvSeries,),
     ),
     HomeNavigationItem(
       icon: const Icon(Icons.help_center_rounded),
       title: 'Help',
       tabName: 'help',
-      screen: const MovieScreen(),
+      screen: const Scaffold(),
     ),
   ];
   late final List<String> _navTabs;

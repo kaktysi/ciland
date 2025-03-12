@@ -2,9 +2,13 @@ part of 'movies_bloc.dart';
 
 abstract class MoviesEvent {}
 
-class LoadTopMovies extends MoviesEvent{}
+class LoadTopMovies extends MoviesEvent {
+  final String movieType;
 
-class LoadMoviesBySearch extends MoviesEvent{
+  LoadTopMovies({required this.movieType});
+}
+
+class LoadMoviesBySearch extends MoviesEvent {
   final String text;
   final String movieType;
 

@@ -22,7 +22,9 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
   ) async {
     try {
       emit(MoviesIsLoadingState());
-      final result = await _moviesUseCase.getTopMovies();
+      final result = await _moviesUseCase.getTopMovies(
+        movieType: event.movieType,
+      );
       emit(MoviesIsLoadedState(movies: result));
     } catch (e) {
       emit(MoviesIsErrorLoadState(exception: e));

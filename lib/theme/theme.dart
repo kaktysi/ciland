@@ -17,11 +17,11 @@ class ThemeApp {
   static const borderColor2 = Color.fromRGBO(72, 82, 94, 1.0);
   static const infoCardBoxColor = Color.fromRGBO(28, 35, 43, 1.0);
 
-  static ThemeData _theme = _themeLight;
+  static ThemeData _theme = _themeDark;
 
   static ThemeData get theme => _theme;
 
-  static final ThemeData _themeLight = ThemeData(
+  static final ThemeData _themeDark = ThemeData(
     useMaterial3: false,
     appBarTheme: const AppBarTheme(
       backgroundColor: scaffoldBackgoundColor,
@@ -53,39 +53,37 @@ class ThemeApp {
     ),
   );
 
-  // static final ThemeData _themeDark = ThemeData(
-  //   useMaterial3: false,
-  //   appBarTheme: const AppBarTheme(
-  //     backgroundColor: colorBlueDark,
-  //     systemOverlayStyle: SystemUiOverlayStyle.dark,
-  //   ),
-  //   brightness: Brightness.dark,
-  //   scaffoldBackgroundColor: colorDarkGray,
-  //   primaryColor: colorBlueDark,
-  //   primarySwatch: Colors.blue,
-  //   visualDensity: VisualDensity.adaptivePlatformDensity,
-  //   buttonTheme: ButtonThemeData(
-  //     buttonColor: colorBlueDark,
-  //     disabledColor: Colors.grey[300],
-  //     colorScheme: const ColorScheme.dark(),
-  //   ),
-  //   elevatedButtonTheme: ElevatedButtonThemeData(
-  //     style: ElevatedButton.styleFrom(
-  //       backgroundColor: colorBlueDark,
-  //       disabledBackgroundColor: const Color.fromRGBO(218, 222, 223, 0.5),
-  //     ),
-  //   ),
-  //   snackBarTheme: const SnackBarThemeData(behavior: SnackBarBehavior.floating),
-  //   fontFamily: "Lato",
-  //   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-  //     selectedItemColor: activeColorDark,
-  //     unselectedItemColor: inactiveColorDark,
-  //     showUnselectedLabels: true,
-  //     selectedLabelStyle: TextStyle(fontSize: 10),
-  //     unselectedLabelStyle: TextStyle(fontSize: 10),
-  //     backgroundColor: navigationBarColorDark,
-  //   ),
-  // );
+  static final ThemeData _themeLight = ThemeData(
+    useMaterial3: false,
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Colors.white70,
+      systemOverlayStyle: SystemUiOverlayStyle.light,
+    ),
+    brightness: Brightness.light,
+    scaffoldBackgroundColor: Colors.white70,
+    primaryColor: Colors.grey,
+    primarySwatch: Colors.grey,
+    visualDensity: VisualDensity.adaptivePlatformDensity,
+    buttonTheme: ButtonThemeData(
+      buttonColor: Colors.grey,
+      disabledColor: Colors.grey[300],
+      colorScheme: const ColorScheme.dark(),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: buttonColor,
+        disabledBackgroundColor: const Color.fromRGBO(218, 222, 223, 0.5),
+      ),
+    ),
+    snackBarTheme: const SnackBarThemeData(behavior: SnackBarBehavior.floating),
+    fontFamily: "Lato",
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      showUnselectedLabels: true,
+      selectedLabelStyle: TextStyle(fontSize: 10),
+      unselectedLabelStyle: TextStyle(fontSize: 10),
+      selectedItemColor: buttonColor,
+    ),
+  );
 
   static ThemeData get themeLight => _themeLight;
 

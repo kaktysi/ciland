@@ -10,6 +10,7 @@ import 'package:ciland/theme/theme.dart';
 import 'package:ciland/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class MovieCardItem extends StatefulWidget {
   final Movie film;
@@ -20,109 +21,106 @@ class MovieCardItem extends StatefulWidget {
 }
 
 class _FilmCardItemState extends State<MovieCardItem> {
-  bool visibility = false;
-  double scale = 1.0;
-
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter:
-          (_) => setState(() {
-            scale = 1.05;
-            visibility = true;
-          }),
-      onExit:
-          (_) => setState(() {
-            scale = 1.00;
-            visibility = false;
-          }),
-      child: Transform.scale(
-        scale: scale,
-        child: Container(
-          decoration: BoxDecoration(
-            border: Border.all(width: 2, color: ThemeApp.borderColor),
-            borderRadius: BorderRadius.circular(21),
-          ),
-          child: Stack(
-            children: [
-              MovieImage(imageUrl: widget.film.primaryImage),
-              Positioned.fill(
-                child: DarkGradientBackground(
-                  borderRadius: 21,
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                ),
+    return ChangeNotifierProvider(
+      create: (context) => (MovieCardScaleProvider()),
+      child: Consumer<MovieCardScaleProvider>(
+        builder: (context, provider, child) => 
+         MouseRegion(
+          onEnter:
+              (context) => provider.onEnter(),
+          onExit:
+              (context) => provider.onExit(),
+          child: Transform.scale(
+            scale: provider.scale,
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(width: 2, color: ThemeApp.borderColor),
+                borderRadius: BorderRadius.circular(21),
               ),
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    MovieTitle(text: widget.film.primarytitle, letterSpacing: 2),
-                    const SizedBox(height: 14),
-                    Row(
+              child: Stack(
+                children: [
+                  MovieImage(imageUrl: widget.film.primaryImage),
+                  Positioned.fill(
+                    child: DarkGradientBackground(
+                      borderRadius: 21,
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        InfoWidget(
-                          text: widget.film.averageRating.toString(),
-                          horizontalPadding: 5,
-                          borderWidth: 2,
-                          borderColor: ThemeApp.borderColor2,
-                          borderRadius: 2,
-                          fontSize: 8,
-                          fontWeight: FontWeight.w400,
+                        MovieTitle(text: widget.film.primarytitle, letterSpacing: 2),
+                        const SizedBox(height: 14),
+                        Row(
+                          children: [
+                            InfoWidget(
+                              text: widget.film.averageRating.toString(),
+                              horizontalPadding: 5,
+                              borderWidth: 2,
+                              borderColor: ThemeApp.borderColor2,
+                              borderRadius: 2,
+                              fontSize: 8,
+                              fontWeight: FontWeight.w400,
+                            ),
+                            Visibility(
+                              visible: widget.film.isAdult,
+                              child: InfoWidget(
+                                text: '18+',
+                                backgroundColor: ThemeApp.infoCardBoxColor,
+                              ),
+                            ),
+                            InfoWidget(
+                              text: widget.film.startYear.toString(),
+                              backgroundColor: ThemeApp.infoCardBoxColor,
+                            ),
+                            InfoWidget(
+                              text: widget.film.genres[0],
+                              backgroundColor: ThemeApp.infoCardBoxColor,
+                            ),
+                          ],
                         ),
-                        Visibility(
-                          visible: widget.film.isAdult,
-                          child: InfoWidget(
-                            text: '18+',
-                            backgroundColor: ThemeApp.infoCardBoxColor,
+                        MovieDescription(
+                          text: widget.film.description,
+                          height: 2,
+                          maxLines: 3,
+                        ),
+                        if (!context.isMobileView) ...[
+                          SizedBox(
+                            width: double.infinity,
+                            child: AnimatedActionButton(
+                              visibility: provider.visibility,
+                              text: 'Watch',
+                              onPressed: () {
+                                context.go('/home/films/details/${widget.film.id}');
+                              },
+                              backgroundColor: ThemeApp.buttonColor,
+                            ),
                           ),
-                        ),
-                        InfoWidget(
-                          text: widget.film.startYear.toString(),
-                          backgroundColor: ThemeApp.infoCardBoxColor,
-                        ),
-                        InfoWidget(
-                          text: widget.film.genres[0],
-                          backgroundColor: ThemeApp.infoCardBoxColor,
-                        ),
+                        ],
+                        if (context.isMobileView) ...[
+                          SizedBox(
+                            width: double.infinity,
+                            child: CustomActionButton(
+                              text: 'Watch',
+                              onPressed: () {
+                                context.go('/home/films/details/${widget.film.id}');
+                              },
+                              backgroundColor: ThemeApp.buttonColor,
+                            ),
+                          ),
+                        ],
                       ],
                     ),
-                    MovieDescription(
-                      text: widget.film.description,
-                      height: 2,
-                      maxLines: 3,
-                    ),
-                    if (!context.isMobileView) ...[
-                      SizedBox(
-                        width: double.infinity,
-                        child: AnimatedActionButton(
-                          visibility: visibility,
-                          text: 'Watch',
-                          onPressed: () {
-                            context.go('/home/films/details/${widget.film.id}');
-                          },
-                          backgroundColor: ThemeApp.buttonColor,
-                        ),
-                      ),
-                    ],
-                    if (context.isMobileView) ...[
-                      SizedBox(
-                        width: double.infinity,
-                        child: CustomActionButton(
-                          text: 'Watch',
-                          onPressed: () {
-                            context.go('/home/films/details/${widget.film.id}');
-                          },
-                          backgroundColor: ThemeApp.buttonColor,
-                        ),
-                      ),
-                    ],
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),
