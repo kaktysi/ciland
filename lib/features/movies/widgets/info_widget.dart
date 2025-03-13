@@ -14,6 +14,7 @@ class InfoWidget extends StatelessWidget {
     this.backgroundColor,
     this.fontSize = 12,
     this.fontWeight = FontWeight.w500,
+    this.textColor,
   });
 
   final String text;
@@ -26,6 +27,7 @@ class InfoWidget extends StatelessWidget {
   final Color? backgroundColor;
   final double fontSize;
   final FontWeight fontWeight;
+  final Color? textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,7 @@ class InfoWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(borderRadius),
         color: backgroundColor,
       ),
-      child: Text(text, style: TextStyle(fontSize: fontSize)),
+      child: Text(text, style: TextStyle(fontSize: fontSize, color: textColor)),
     );
   }
 }

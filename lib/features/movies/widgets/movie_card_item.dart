@@ -61,7 +61,7 @@ class _FilmCardItemState extends State<MovieCardItem> {
                                     ]
                                     : [
                                       Colors.transparent,
-                                      Colors.white.withValues(alpha: 0.6),
+                                      Colors.grey.withValues(alpha: 0.6),
                                     ],
                           ),
                         ),
@@ -74,6 +74,8 @@ class _FilmCardItemState extends State<MovieCardItem> {
                               MovieTitle(
                                 text: widget.film.primarytitle,
                                 letterSpacing: 2,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white,
                               ),
                               const SizedBox(height: 14),
                               Row(
@@ -82,10 +84,17 @@ class _FilmCardItemState extends State<MovieCardItem> {
                                     text: widget.film.averageRating.toString(),
                                     horizontalPadding: 5,
                                     borderWidth: 2,
-                                    borderColor: ThemeApp.borderColor2,
+                                    borderColor:
+                                        ThemeApp.themeAppIsDark()
+                                            ? ThemeApp.borderColor2
+                                            : ThemeApp.infoCardBoxColor2,
                                     borderRadius: 2,
                                     fontSize: 8,
                                     fontWeight: FontWeight.w400,
+                                    textColor:
+                                        ThemeApp.themeAppIsDark()
+                                            ? Colors.white
+                                            : ThemeApp.infoCardBoxColor2,
                                   ),
                                   Visibility(
                                     visible: widget.film.isAdult,
@@ -117,6 +126,7 @@ class _FilmCardItemState extends State<MovieCardItem> {
                                 text: widget.film.description,
                                 height: 2,
                                 maxLines: 3,
+                                color: Colors.white,
                               ),
                               if (!context.isMobileView) ...[
                                 SizedBox(

@@ -11,7 +11,7 @@ class MovieImage extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(21),
       child:
-          imageUrl.isNotEmpty
+          imageUrl != ''
               ? Image.network(
                 imageUrl,
                 fit: BoxFit.cover,

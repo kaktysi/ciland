@@ -7,12 +7,14 @@ class MovieTitle extends StatelessWidget {
     this.letterSpacing,
     this.fontSize = 28,
     this.fontWeight = FontWeight.w500,
+    this.color,
   });
 
   final String text;
   final double fontSize;
   final double? letterSpacing;
   final FontWeight fontWeight;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +25,7 @@ class MovieTitle extends StatelessWidget {
           fontSize: fontSize,
           fontWeight: fontWeight,
           letterSpacing: letterSpacing,
+          color: color,
         ),
       ),
     );
