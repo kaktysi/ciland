@@ -1,6 +1,8 @@
 import 'package:ciland/features/movies/entity/film.dart';
 import 'package:ciland/features/movies/repository/abstract_films_repository.dart';
+import 'package:injectable/injectable.dart';
 
+@LazySingleton()
 class MoviesUseCase {
   final AbstractMoviesRepository _moviesRepository;
 

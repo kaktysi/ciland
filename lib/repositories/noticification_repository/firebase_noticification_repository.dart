@@ -2,7 +2,9 @@ import 'dart:developer';
 
 import 'package:ciland/repositories/noticification_repository/abstract_noticification_repository.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:injectable/injectable.dart';
 
+@LazySingleton(as: AbstractNotificationRepository)
 class FirebaseNotificationRepository
     extends AbstractNotificationRepository {
   final FirebaseMessaging _messaging = FirebaseMessaging.instance;

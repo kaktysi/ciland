@@ -1,3 +1,4 @@
+import 'package:ciland/di.dart';
 import 'package:ciland/features/movies/widgets/gradient_background.dart';
 import 'package:ciland/features/movie_details/bloc/movie_details_bloc.dart';
 import 'package:ciland/features/movie_details/usecase/movie_details_usecase.dart';
@@ -25,7 +26,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
     return BlocProvider(
       create:
           (context) => MovieDetailsBloc(
-            movieDetailsUseCase: GetIt.I<MovieDetailsUseCase>(),
+            movieDetailsUseCase: getIt<MovieDetailsUseCase>(),
           )..add(LoadMovieDetailsEvent(id: widget.id)),
       child: AnimatedBuilder(
         animation: Provider.of<ThemeChange>(context),

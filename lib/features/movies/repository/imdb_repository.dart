@@ -2,7 +2,9 @@ import 'package:ciland/app_config.dart';
 import 'package:ciland/features/movies/models/movie_card.dart';
 import 'package:ciland/features/movies/repository/abstract_films_repository.dart';
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 
+@LazySingleton(as: AbstractMoviesRepository)
 class IMDBRepository implements AbstractMoviesRepository {
   final Dio _dio;
 
