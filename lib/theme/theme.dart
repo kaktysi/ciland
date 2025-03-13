@@ -84,6 +84,7 @@ class ThemeApp {
       selectedLabelStyle: TextStyle(fontSize: 10),
       unselectedLabelStyle: TextStyle(fontSize: 10),
       selectedItemColor: buttonColor,
+      unselectedItemColor: Colors.black,
     ),
   );
 

@@ -164,7 +164,10 @@ BottomNavigationBarItem _bottomNavigationItem({
   required IconData icon,
 }) {
   return BottomNavigationBarItem(
-    icon: Icon(icon, color: Colors.white),
+    icon: Icon(
+      icon,
+      color: ThemeApp.themeAppIsDark() ? Colors.white : Colors.black,
+    ),
     label: name,
     activeIcon: Icon(icon, color: Colors.amber),
     backgroundColor: ThemeApp.theme.bottomNavigationBarTheme.backgroundColor,
