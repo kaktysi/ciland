@@ -6,6 +6,7 @@ import 'package:ciland/theme/theme.dart';
 import 'package:ciland/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   final String tab;
@@ -24,19 +25,19 @@ class _HomeScreenState extends State<HomeScreen> {
       icon: const Icon(Icons.apps_outlined),
       title: 'CILAND',
       tabName: 'ciland',
-      screen: const MovieScreen(movieType: MovieType.movie,),
+      screen: const MovieScreen(movieType: MovieType.movie),
     ),
     HomeNavigationItem(
       icon: const Icon(Icons.tv),
       title: 'Films',
       tabName: 'films',
-      screen: const MovieScreen(movieType: MovieType.movie,),
+      screen: const MovieScreen(movieType: MovieType.movie),
     ),
     HomeNavigationItem(
       icon: const Icon(Icons.tv_off_rounded),
       title: 'Series',
       tabName: 'series',
-      screen: const MovieScreen(movieType: MovieType.tvSeries,),
+      screen: const MovieScreen(movieType: MovieType.tvSeries),
     ),
     HomeNavigationItem(
       icon: const Icon(Icons.help_center_rounded),
@@ -86,7 +87,16 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: Icon(Icons.wb_sunny_outlined),
+            onPressed: () {
+              Provider.of<ThemeChange>(context, listen: false).toggleTheme();
+            },
+          ),
+        ],
+      ),
       body: Stack(children: [_fragmentPage()]),
       drawer: NavigationDrawerLeft(navItems: _navItems),
       bottomNavigationBar:
@@ -101,10 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       name: 'ciland',
                       icon: Icons.apps_outlined,
                     ),
-                    _bottomNavigationItem(
-                      name: 'Films',
-                      icon: Icons.tv,
-                    ),
+                    _bottomNavigationItem(name: 'Films', icon: Icons.tv),
                     _bottomNavigationItem(
                       name: 'Series',
                       icon: Icons.tv_off_rounded,

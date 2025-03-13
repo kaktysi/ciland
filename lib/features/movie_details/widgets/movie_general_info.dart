@@ -39,14 +39,26 @@ class MovieGeneralInfo extends StatelessWidget {
               '${details.startYear.toString().toUpperCase()}'
               '${!details.movieType.isMovie ? ' - ${details.endYear.toString().toUpperCase()}' : ''} · '
               '${details.genres[0].toUpperCase()}${details.isAdult ? ' · 18+' : ''} · ',
-              style: TextStyle(fontSize: 18, color: ThemeApp.subTitleColor3),
+              style: TextStyle(
+                fontSize: 18,
+                color:
+                    ThemeApp.themeAppIsDark() ? ThemeApp.subTitleColor3 : Colors.black,
+              ),
             ),
-            Icon(Icons.volume_up, size: 20, color: ThemeApp.subTitleColor3),
+            Icon(
+              Icons.volume_up,
+              size: 20,
+              color: ThemeApp.themeAppIsDark() ? ThemeApp.subTitleColor3 : Colors.black,
+            ),
             Text(
               details.spokenLanguages
                   .map((language) => language.toUpperCase())
                   .join(', '),
-              style: TextStyle(fontSize: 18, color: ThemeApp.subTitleColor3),
+              style: TextStyle(
+                fontSize: 18,
+                color:
+                    ThemeApp.themeAppIsDark() ? ThemeApp.subTitleColor3 : Colors.black,
+              ),
             ),
           ],
         ),

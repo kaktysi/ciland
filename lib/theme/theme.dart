@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeApp {
   static const themeLightKey = 'light';
@@ -16,8 +17,9 @@ class ThemeApp {
   static const borderColor = Color.fromRGBO(49, 50, 54, 1.0);
   static const borderColor2 = Color.fromRGBO(72, 82, 94, 1.0);
   static const infoCardBoxColor = Color.fromRGBO(28, 35, 43, 1.0);
+  static const infoCardBoxColor2 = Color.fromRGBO(209, 222, 237, 1);
 
-  static ThemeData _theme = _themeDark;
+  static ThemeData _theme = _themeLight;
 
   static ThemeData get theme => _theme;
 
@@ -87,11 +89,11 @@ class ThemeApp {
 
   static ThemeData get themeLight => _themeLight;
 
-  // static ThemeData get themeDark => _themeDark;
+  static ThemeData get themeDark => _themeDark;
 
   static void setTheme(String value) {
     if (value == themeDarkKey) {
-      // _theme = _themeDark;
+      _theme = _themeDark;
     } else {
       _theme = _themeLight;
     }
@@ -102,13 +104,39 @@ class ThemeApp {
   }
 
   static bool themeAppIsDark() {
-    return _theme.brightness.index == 0;
+    return _theme == themeDark;
   }
 }
 
 class ThemeChange extends ChangeNotifier {
-  set theme(ThemeData value) {
-    ThemeApp.setCustomTheme(value);
+  ThemeChange() {
+    _loadTheme();
+  }
+
+  bool _isDark = true;
+
+  bool get isDark => _isDark;
+
+  ThemeData get theme => _isDark ? ThemeApp.themeDark : ThemeApp.themeLight;
+
+  void toggleTheme() async {
+    _isDark = !_isDark;
+    ThemeApp.setTheme(_isDark ? ThemeApp.themeDarkKey : ThemeApp.themeLightKey);
+
+    notifyListeners(); 
+    _saveTheme();
+  }
+
+  Future<void> _loadTheme() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _isDark = prefs.getBool('isDarkTheme') ?? true;
+    ThemeApp.setTheme(_isDark ? ThemeApp.themeDarkKey : ThemeApp.themeLightKey);
+
     notifyListeners();
+  }
+
+  Future<void> _saveTheme() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isDarkTheme', _isDark);
   }
 }

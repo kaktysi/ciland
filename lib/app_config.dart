@@ -1,7 +1,7 @@
 abstract class AppConfig {
   const AppConfig._();
 
-  static const apikey = '91922564b6mshd3b030a9f3e30b1p1ad83cjsn4527646e1405';
+  static const apikey = '25208df91fmsh272dfc56f1f6fb6p1a3ea6jsn19cb107769c9';
 
   static const appRouteName = 'ciland';
 

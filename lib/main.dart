@@ -6,6 +6,7 @@ import 'package:ciland/features/movie_details/repository/imdb_movie_details_repo
 import 'package:ciland/features/movie_details/repository/movie_details_repository.dart';
 import 'package:ciland/features/movie_details/usecase/movie_details_usecase.dart';
 import 'package:ciland/router/router.dart';
+import 'package:ciland/theme/theme.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -33,8 +34,11 @@ void main() async {
   );
   usePathUrlStrategy();
   runApp(
-    Provider(
-      create: (context) => AppRouter(),
+    MultiProvider(
+      providers: [
+        Provider(create: (context) => AppRouter()),
+        ChangeNotifierProvider(create: (context) => ThemeChange()),
+      ],
       child: CiLandApp(),
     ),
   );

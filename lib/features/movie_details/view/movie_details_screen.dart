@@ -1,9 +1,10 @@
-import 'package:ciland/features/movies/widgets/dark_gradient_background.dart';
+import 'package:ciland/features/movies/widgets/gradient_background.dart';
 import 'package:ciland/features/movie_details/bloc/movie_details_bloc.dart';
 import 'package:ciland/features/movie_details/usecase/movie_details_usecase.dart';
 import 'package:ciland/features/movie_details/widgets/movie_mobile_info.dart';
 import 'package:ciland/features/movie_details/widgets/movie_general_info.dart';
 import 'package:ciland/features/movie_details/widgets/movie_web_info.dart';
+import 'package:ciland/theme/theme.dart';
 import 'package:ciland/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -54,9 +55,19 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                             ),
                           ),
                           Positioned.fill(
-                            child: DarkGradientBackground(
+                            child: GradientBackground(
                               begin: Alignment.topRight,
                               end: Alignment.bottomLeft,
+                              colorList:
+                                  ThemeApp.themeAppIsDark()
+                                      ? [
+                                        Colors.transparent,
+                                        Colors.black.withValues(alpha: 1),
+                                      ]
+                                      : [
+                                        Colors.transparent,
+                                        Colors.white.withValues(alpha: 0.7),
+                                      ],
                             ),
                           ),
                           Padding(
