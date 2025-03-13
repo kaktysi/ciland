@@ -33,6 +33,12 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
           return Theme(data: ThemeApp.theme, child: child ?? const SizedBox());
         },
         child: Scaffold(
+          extendBodyBehindAppBar: true,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            leading: BackButton(),
+          ),
           body: SingleChildScrollView(
             child: BlocBuilder<MovieDetailsBloc, MovieDetailsState>(
               builder: (context, state) {

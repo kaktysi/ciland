@@ -136,7 +136,7 @@ class _FilmCardItemState extends State<MovieCardItem> {
                                     text: 'Watch',
                                     onPressed: () {
                                       context.go(
-                                        '/home/films/details/${widget.film.id}',
+                                        '/home/${widget.film.movieType.isMovie ? 'films' : 'series'}/details/${widget.film.id}',
                                       );
                                     },
                                     backgroundColor: ThemeApp.buttonColor,
@@ -150,7 +150,7 @@ class _FilmCardItemState extends State<MovieCardItem> {
                                     text: 'Watch',
                                     onPressed: () {
                                       context.go(
-                                        '/home/films/details/${widget.film.id}',
+                                        '/home/${widget.film.movieType.isMovie ? 'films' : 'series'}/details/${widget.film.id}',
                                       );
                                     },
                                     backgroundColor: ThemeApp.buttonColor,

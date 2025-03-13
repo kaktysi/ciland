@@ -21,7 +21,7 @@ class MovieMobileInfo extends StatelessWidget {
           height: 1.2,
         ),
         InfoRow(title: 'Original Title', info: details.originalTitle),
-        InfoRow(title: 'Votes', info: details.numVotes.toString()),
+        InfoRow(title: 'Votes', info: details.numVotes?.toString() ?? '-'),
         InfoRow(title: 'Duration', info: details.duration),
         InfoRow(title: 'Budget', info: details.budgetUSD.toString()),
         InfoRow(

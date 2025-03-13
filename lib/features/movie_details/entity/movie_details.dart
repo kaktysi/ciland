@@ -63,8 +63,8 @@ class MovieDetails extends Movie {
     );
   }
 
-  String get duration => '$runtimeMinutes min';
+  String get duration => '${runtimeMinutes ?? '-'} min';
 
-  String get budgetUSD => '$budget\$';
+  String get budgetUSD => '${budget ?? '-'} \$';
 
 }

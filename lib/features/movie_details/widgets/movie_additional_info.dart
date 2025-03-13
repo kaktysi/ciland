@@ -33,13 +33,13 @@ class MovieAdditionalInfo extends StatelessWidget {
             Expanded(
               child: InfoColumn(
                 title: 'Duration',
-                info: details.runtimeMinutes == null ? '-' : details.duration,
+                info: details.duration,
               ),
             ),
             Expanded(
               child: InfoColumn(
                 title: 'Budget',
-                info: details.budget == null ? '-' : details.budgetUSD,
+                info: details.budgetUSD,
               ),
             ),
           ],
