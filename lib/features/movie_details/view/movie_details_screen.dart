@@ -9,6 +9,7 @@ import 'package:ciland/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
 
 class MovieDetailsScreen extends StatefulWidget {
   const MovieDetailsScreen({super.key, required this.id});
@@ -26,93 +27,99 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
           (context) => MovieDetailsBloc(
             movieDetailsUseCase: GetIt.I<MovieDetailsUseCase>(),
           )..add(LoadMovieDetailsEvent(id: widget.id)),
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: BlocBuilder<MovieDetailsBloc, MovieDetailsState>(
-            builder: (context, state) {
-              if (state is MovieDetailsIsLoadedState) {
-                final details = state.movieDetails;
-                return Column(
-                  children: [
-                    SizedBox(
-                      height: 800,
-                      width: double.infinity,
-                      child: Stack(
-                        children: [
-                          Positioned.fill(
-                            child: DecoratedBox(
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image:
-                                      details.primaryImage.isNotEmpty
-                                          ? NetworkImage(details.primaryImage)
-                                          : AssetImage(
-                                            'assets/svg/no_picture.svg',
-                                          ),
-                                  fit: BoxFit.cover,
+      child: AnimatedBuilder(
+        animation: Provider.of<ThemeChange>(context),
+        builder: (context, child) {
+          return Theme(data: ThemeApp.theme, child: child ?? const SizedBox());
+        },
+        child: Scaffold(
+          body: SingleChildScrollView(
+            child: BlocBuilder<MovieDetailsBloc, MovieDetailsState>(
+              builder: (context, state) {
+                if (state is MovieDetailsIsLoadedState) {
+                  final details = state.movieDetails;
+                  return Column(
+                    children: [
+                      SizedBox(
+                        height: 800,
+                        width: double.infinity,
+                        child: Stack(
+                          children: [
+                            Positioned.fill(
+                              child: DecoratedBox(
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image:
+                                        details.primaryImage.isNotEmpty
+                                            ? NetworkImage(details.primaryImage)
+                                            : AssetImage(
+                                              'assets/svg/no_picture.svg',
+                                            ),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Positioned.fill(
-                            child: GradientBackground(
-                              begin: Alignment.topRight,
-                              end: Alignment.bottomLeft,
-                              colorList:
-                                  ThemeApp.themeAppIsDark()
-                                      ? [
-                                        Colors.transparent,
-                                        Colors.black.withValues(alpha: 1),
-                                      ]
-                                      : [
-                                        Colors.transparent,
-                                        Colors.white.withValues(alpha: 0.7),
-                                      ],
+                            Positioned.fill(
+                              child: GradientBackground(
+                                begin: Alignment.topRight,
+                                end: Alignment.bottomLeft,
+                                colorList:
+                                    ThemeApp.themeAppIsDark()
+                                        ? [
+                                          Colors.transparent,
+                                          Colors.black.withValues(alpha: 1),
+                                        ]
+                                        : [
+                                          Colors.transparent,
+                                          Colors.white.withValues(alpha: 0.7),
+                                        ],
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                              right:
-                                  context.isMobileView ||
-                                          context.isNarrowWebView
-                                      ? 20
-                                      : 80,
-                              left:
-                                  context.isMobileView ||
-                                          context.isNarrowWebView
-                                      ? 20
-                                      : 80,
-                              top: 70,
+                            Padding(
+                              padding: EdgeInsets.only(
+                                right:
+                                    context.isMobileView ||
+                                            context.isNarrowWebView
+                                        ? 20
+                                        : 80,
+                                left:
+                                    context.isMobileView ||
+                                            context.isNarrowWebView
+                                        ? 20
+                                        : 80,
+                                top: 70,
+                              ),
+                              child: ConstrainedBox(
+                                constraints: BoxConstraints(maxWidth: 800),
+                                child: MovieGeneralInfo(details: details),
+                              ),
                             ),
-                            child: ConstrainedBox(
-                              constraints: BoxConstraints(maxWidth: 800),
-                              child: MovieGeneralInfo(details: details),
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal:
-                            context.isMobileView || context.isNarrowWebView
-                                ? 20
-                                : 80,
-                        vertical: 20,
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal:
+                              context.isMobileView || context.isNarrowWebView
+                                  ? 20
+                                  : 80,
+                          vertical: 20,
+                        ),
+                        child:
+                            !context.isMobileView
+                                ? MovieWebInfo(details: details)
+                                : MovieMobileInfo(details: details),
                       ),
-                      child:
-                          !context.isMobileView
-                              ? MovieWebInfo(details: details)
-                              : MovieMobileInfo(details: details),
-                    ),
-                  ],
-                );
-              }
-              if (state is MovieDetailsIsErrorLoadState) {
-                return Center(child: Text('ERROR'));
-              }
-              return Center(child: CircularProgressIndicator());
-            },
+                    ],
+                  );
+                }
+                if (state is MovieDetailsIsErrorLoadState) {
+                  return Center(child: Text('ERROR'));
+                }
+                return Center(child: CircularProgressIndicator());
+              },
+            ),
           ),
         ),
       ),

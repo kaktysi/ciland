@@ -97,7 +97,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body: Stack(children: [_fragmentPage()]),
+      body: AnimatedBuilder(
+        animation: Provider.of<ThemeChange>(context),
+        builder: (context, child) {
+          return Theme(data: ThemeApp.theme, child: child ?? const SizedBox());
+        },
+        child: Stack(children: [_fragmentPage()]),
+      ),
       drawer: NavigationDrawerLeft(navItems: _navItems),
       bottomNavigationBar:
           context.isMobileView
