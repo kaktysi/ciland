@@ -1,7 +1,8 @@
 import 'package:ciland/features/movies/models/movie_card.dart';
 import 'package:ciland/features/movies/models/movie_type.dart';
+import 'package:equatable/equatable.dart';
 
-class Movie {
+class Movie extends Equatable {
   final String id;
   final String primarytitle;
   final String description;
@@ -12,7 +13,7 @@ class Movie {
   final List<String> genres;
   final MovieType movieType;
 
-  Movie({
+  const Movie({
     required this.id,
     required this.primarytitle,
     required this.description,
@@ -37,4 +38,17 @@ class Movie {
       movieType: model.type,
     );
   }
+
+  @override
+  List<Object?> get props => [
+    id,
+    primarytitle,
+    description,
+    primaryImage,
+    isAdult,
+    averageRating,
+    startYear,
+    genres,
+    movieType,
+  ];
 }

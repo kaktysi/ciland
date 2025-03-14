@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:ciland/features/movies/entity/movie.dart';
 import 'package:ciland/features/movies/usecase/movies_usecase.dart';
+import 'package:equatable/equatable.dart';
 
 part 'movies_state.dart';
 part 'movies_event.dart';
@@ -21,13 +22,15 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
     Emitter<MoviesState> emit,
   ) async {
     try {
-      emit(MoviesIsLoadingState());
+      if (state is! MoviesIsLoadedState) emit(MoviesIsLoadingState());
       final result = await _moviesUseCase.getTopMovies(
         movieType: event.movieType,
       );
       emit(MoviesIsLoadedState(movies: result));
     } catch (e) {
       emit(MoviesIsErrorLoadState(exception: e));
+    } finally {
+      event.completer?.complete();
     }
   }
 
@@ -36,7 +39,7 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
     Emitter<MoviesState> emit,
   ) async {
     try {
-      emit(MoviesIsLoadingState());
+      if (state is! MoviesIsLoadedState) emit(MoviesIsLoadingState());
       final result = await _moviesUseCase.getMoviesBySearch(
         movieType: event.movieType,
         text: event.text,
@@ -44,6 +47,8 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
       emit(MoviesIsLoadedState(movies: result));
     } catch (e) {
       emit(MoviesIsErrorLoadState(exception: e));
+    } finally {
+      event.completer?.complete();
     }
   }
 }

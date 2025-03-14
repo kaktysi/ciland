@@ -19,7 +19,7 @@ class ThemeApp {
   static const infoCardBoxColor = Color.fromRGBO(28, 35, 43, 1.0);
   static const infoCardBoxColor2 = Color.fromRGBO(209, 222, 237, 1);
 
-  static ThemeData _theme = _themeLight;
+  static ThemeData _theme = _themeDark;
 
   static ThemeData get theme => _theme;
 
@@ -62,8 +62,8 @@ class ThemeApp {
       systemOverlayStyle: SystemUiOverlayStyle.light,
     ),
     brightness: Brightness.light,
-    scaffoldBackgroundColor: Colors.white70,
-    primaryColor: Colors.grey,
+    scaffoldBackgroundColor: const Color.fromARGB(205, 255, 255, 255),
+    primaryColor: Colors.white,
     primarySwatch: Colors.grey,
     visualDensity: VisualDensity.adaptivePlatformDensity,
     buttonTheme: ButtonThemeData(
