@@ -33,7 +33,15 @@ class IMDBRepository implements AbstractMoviesRepository {
       await _movieCardBox.putAll(movieCardMap);
     } catch (e) {
       log(e.toString());
-      return _movieCardBox.values.toList();
+      movieList =
+          _movieCardBox.values
+              .toList()
+              .where(
+                (e) =>
+                    (movieType == 'movie' ? e.type.isMovie : !e.type.isMovie),
+              )
+              .toList();
+      movieList.sort((a, b) => b.averageRating.compareTo(a.averageRating));
     }
     return movieList;
   }
@@ -60,7 +68,15 @@ class IMDBRepository implements AbstractMoviesRepository {
       final movieCardMap = {for (var e in movieList) e.primaryTitle: e};
       await _movieCardBox.putAll(movieCardMap);
     } catch (e) {
-      return _movieCardBox.values.toList();
+      movieList =
+          _movieCardBox.values
+              .toList()
+              .where(
+                (e) =>
+                    (movieType == 'movie' ? e.type.isMovie : !e.type.isMovie),
+              )
+              .toList();
+      movieList.sort((a, b) => b.averageRating.compareTo(a.averageRating));
     }
     return movieList;
   }

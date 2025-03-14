@@ -5,11 +5,11 @@ import 'package:ciland/features/movie_details/usecase/movie_details_usecase.dart
 import 'package:ciland/features/movie_details/widgets/movie_mobile_info.dart';
 import 'package:ciland/features/movie_details/widgets/movie_general_info.dart';
 import 'package:ciland/features/movie_details/widgets/movie_web_info.dart';
+import 'package:ciland/features/movies/widgets/movie_image.dart';
 import 'package:ciland/theme/theme.dart';
 import 'package:ciland/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 class MovieDetailsScreen extends StatefulWidget {
@@ -53,18 +53,8 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                         child: Stack(
                           children: [
                             Positioned.fill(
-                              child: DecoratedBox(
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image:
-                                        details.primaryImage.isNotEmpty
-                                            ? NetworkImage(details.primaryImage)
-                                            : AssetImage(
-                                              'assets/svg/no_picture.svg',
-                                            ),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
+                              child: MovieImage(
+                                imageUrl: details.primaryImage,
                               ),
                             ),
                             Positioned.fill(

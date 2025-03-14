@@ -22,12 +22,6 @@ class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   final List<HomeNavigationItem> _navItems = [
     HomeNavigationItem(
-      icon: const Icon(Icons.apps_outlined),
-      title: 'CILAND',
-      tabName: 'ciland',
-      screen: const MovieScreen(movieType: MovieType.movie),
-    ),
-    HomeNavigationItem(
       icon: const Icon(Icons.tv),
       title: 'Films',
       tabName: 'films',
@@ -113,10 +107,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: BottomNavigationBar(
                   key: const Key('bottomNavigationBar'),
                   items: [
-                    _bottomNavigationItem(
-                      name: 'ciland',
-                      icon: Icons.apps_outlined,
-                    ),
                     _bottomNavigationItem(name: 'Films', icon: Icons.tv),
                     _bottomNavigationItem(
                       name: 'Series',
@@ -144,15 +134,12 @@ class _HomeScreenState extends State<HomeScreen> {
     _selectedIndex = index;
     switch (index) {
       case 0:
-        context.go('/home/ciland');
-        break;
-      case 1:
         context.go('/home/films');
         break;
-      case 2:
+      case 1:
         context.go('/home/series');
         break;
-      case 3:
+      case 2:
         context.go('/home/help');
         break;
     }

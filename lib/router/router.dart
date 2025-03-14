@@ -23,7 +23,7 @@ class AppRouter {
         routes: [
           GoRoute(
             name: AppConfig.homeRouteName,
-            path: '/home/:tab(ciland|films|series|help)',
+            path: '/home/:tab(films|series|help)',
             builder: (context, state) {
               return const SizedBox();
             },
