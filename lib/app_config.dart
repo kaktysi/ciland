@@ -16,4 +16,10 @@ abstract class AppConfig {
   static const helpRouteName = 'help';
 
   static const maxElementsOnPage = 32;
+
+  static const movieHiveTypeId = 1;
+
+  static const movieTypeHiveTypeId = 2;
+
+  static const movieHiveCardBoxName = 'movie_card_box';
 }

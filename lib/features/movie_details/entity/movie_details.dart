@@ -1,4 +1,4 @@
-import 'package:ciland/features/movies/entity/film.dart';
+import 'package:ciland/features/movies/entity/movie.dart';
 import 'package:ciland/features/movie_details/models/movie_details.dart';
 import 'package:ciland/features/movie_details/models/person.dart';
 

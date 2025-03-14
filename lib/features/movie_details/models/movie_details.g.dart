@@ -14,28 +14,23 @@ MovieDetailsModel _$MovieDetailsModelFromJson(Map<String, dynamic> json) =>
       language: json['language'] as String?,
       budget: (json['budget'] as num?)?.toInt(),
       endYear: (json['endYear'] as num?)?.toInt(),
-      countriesOfOrigin:
-          (json['countriesOfOrigin'] as List<dynamic>?)
+      countriesOfOrigin: (json['countriesOfOrigin'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
           [],
-      spokenLanguages:
-          (json['spokenLanguages'] as List<dynamic>?)
+      spokenLanguages: (json['spokenLanguages'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
           [],
-      directors:
-          (json['directors'] as List<dynamic>?)
+      directors: (json['directors'] as List<dynamic>?)
               ?.map((e) => Person.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
-      writers:
-          (json['writers'] as List<dynamic>?)
+      writers: (json['writers'] as List<dynamic>?)
               ?.map((e) => Person.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
-      cast:
-          (json['cast'] as List<dynamic>?)
+      cast: (json['cast'] as List<dynamic>?)
               ?.map((e) => Person.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
@@ -46,17 +41,12 @@ MovieDetailsModel _$MovieDetailsModelFromJson(Map<String, dynamic> json) =>
       isAdult: json['isAdult'] as bool? ?? false,
       averageRating: (json['averageRating'] as num?)?.toDouble() ?? 0.0,
       startYear: (json['startYear'] as num?)?.toInt() ?? 0,
-      genres:
-          (json['genres'] as List<dynamic>?)
+      genres: (json['genres'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
           [],
-      type:
-          $enumDecodeNullable(
-            _$MovieTypeEnumMap,
-            json['type'],
-            unknownValue: MovieType.movie,
-          ) ??
+      type: $enumDecodeNullable(_$MovieTypeEnumMap, json['type'],
+              unknownValue: MovieType.movie) ??
           MovieType.movie,
     );
 

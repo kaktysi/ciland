@@ -1,4 +1,4 @@
-import 'package:ciland/features/movies/entity/film.dart';
+import 'package:ciland/features/movies/entity/movie.dart';
 import 'package:ciland/features/movies/widgets/animated_action_button.dart';
 import 'package:ciland/features/movies/widgets/custom_action_button.dart';
 import 'package:ciland/features/movies/widgets/gradient_background.dart';

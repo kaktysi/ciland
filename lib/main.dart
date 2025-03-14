@@ -10,12 +10,12 @@ import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  configureDependencies();
+  await configureDependencies();
   usePathUrlStrategy();
 
   if (!kIsWeb) await getIt<AbstractNotificationRepository>().initialize();

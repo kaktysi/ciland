@@ -1,5 +1,5 @@
 import 'package:ciland/app_config.dart';
-import 'package:ciland/features/movies/entity/film.dart';
+import 'package:ciland/features/movies/entity/movie.dart';
 import 'package:ciland/features/movies/widgets/mobile_page_numbers_view.dart';
 import 'package:ciland/features/movies/widgets/movie_card_item.dart';
 import 'package:ciland/features/movies/widgets/web_page_numbers_view.dart';

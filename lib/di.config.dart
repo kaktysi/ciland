@@ -1,4 +1,3 @@
-// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -15,6 +14,7 @@ import 'package:ciland/features/movie_details/repository/movie_details_repositor
     as _i949;
 import 'package:ciland/features/movie_details/usecase/movie_details_usecase.dart'
     as _i444;
+import 'package:ciland/features/movies/models/movie_card.dart' as _i644;
 import 'package:ciland/features/movies/repository/abstract_films_repository.dart'
     as _i287;
 import 'package:ciland/features/movies/repository/imdb_repository.dart' as _i16;
@@ -25,31 +25,32 @@ import 'package:ciland/repositories/noticification_repository/firebase_noticific
     as _i680;
 import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
+import 'package:hive_flutter/hive_flutter.dart' as _i986;
 import 'package:injectable/injectable.dart' as _i526;
 
 extension GetItInjectableX on _i174.GetIt {
-  // initializes the registration of main-scope dependencies inside of GetIt
+// initializes the registration of main-scope dependencies inside of GetIt
   _i174.GetIt init({
     String? environment,
     _i526.EnvironmentFilter? environmentFilter,
   }) {
-    final gh = _i526.GetItHelper(this, environment, environmentFilter);
-    gh.lazySingleton<_i287.AbstractMoviesRepository>(
-      () => _i16.IMDBRepository(gh<_i361.Dio>()),
+    final gh = _i526.GetItHelper(
+      this,
+      environment,
+      environmentFilter,
     );
     gh.lazySingleton<_i949.AbstractMovieDetailsRepository>(
-      () => _i954.ImdbMovieDetailsRepository(gh<_i361.Dio>()),
-    );
+        () => _i954.ImdbMovieDetailsRepository(gh<_i361.Dio>()));
     gh.lazySingleton<_i979.AbstractNotificationRepository>(
-      () => _i680.FirebaseNotificationRepository(),
-    );
-    gh.lazySingleton<_i560.MoviesUseCase>(
-      () => _i560.MoviesUseCase(gh<_i287.AbstractMoviesRepository>()),
-    );
-    gh.lazySingleton<_i444.MovieDetailsUseCase>(
-      () =>
-          _i444.MovieDetailsUseCase(gh<_i949.AbstractMovieDetailsRepository>()),
-    );
+        () => _i680.FirebaseNotificationRepository());
+    gh.lazySingleton<_i287.AbstractMoviesRepository>(() => _i16.IMDBRepository(
+          gh<_i361.Dio>(),
+          gh<_i986.Box<_i644.MovieCard>>(),
+        ));
+    gh.lazySingleton<_i444.MovieDetailsUseCase>(() =>
+        _i444.MovieDetailsUseCase(gh<_i949.AbstractMovieDetailsRepository>()));
+    gh.singleton<_i560.MoviesUseCase>(
+        () => _i560.MoviesUseCase(gh<_i287.AbstractMoviesRepository>()));
     return this;
   }
 }

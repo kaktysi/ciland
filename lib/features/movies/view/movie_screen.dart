@@ -1,7 +1,7 @@
 import 'package:ciland/app_config.dart';
 import 'package:ciland/di.dart';
 import 'package:ciland/features/movies/bloc/movies_bloc.dart';
-import 'package:ciland/features/movies/entity/film.dart';
+import 'package:ciland/features/movies/entity/movie.dart';
 import 'package:ciland/features/movies/models/movie_type.dart';
 import 'package:ciland/features/movies/usecase/movies_usecase.dart';
 import 'package:ciland/features/movies/widgets/movie_list_grid_view.dart';

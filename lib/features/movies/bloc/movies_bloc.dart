@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:ciland/features/movies/entity/film.dart';
+import 'package:ciland/features/movies/entity/movie.dart';
 import 'package:ciland/features/movies/usecase/movies_usecase.dart';
 
 part 'movies_state.dart';
